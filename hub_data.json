@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-09-29 23:33:30",
-  "total_net_worth_krw": 10224938.0,
+  "timestamp": "2026-09-29 23:43:30",
+  "total_net_worth_krw": 10224368.0,
   "exchange_rate": 1353.2,
   "kr_minervini": {
     "status": "RUNNING",
@@ -58,7 +58,7 @@
   "us_peter_lynch": {
     "status": "RUNNING",
     "stale": false,
-    "strategy_name": "피터 린치 GARP v3",
+    "strategy_name": "미국 가치주 v3",
     "market": "US",
     "holdings": [
       {
@@ -66,99 +66,99 @@
         "name": "브로드컴",
         "shares": 1,
         "buy_price": 353.67,
-        "current_price": 361.4,
-        "return_pct": 2.19,
-        "eval_amount": 361.4,
+        "current_price": 361.6,
+        "return_pct": 2.24,
+        "eval_amount": 361.6,
         "peg": 0.35,
         "fair_value": 274.75,
         "tag": "🟢보유",
-        "strategy": "피터 린치 GARP"
+        "strategy": "미국 가치주"
       },
       {
         "symbol": "COO",
         "name": "쿠퍼",
         "shares": 6,
         "buy_price": 54.95,
-        "current_price": 56.55,
-        "return_pct": 2.91,
-        "eval_amount": 339.29999999999995,
+        "current_price": 56.51,
+        "return_pct": 2.84,
+        "eval_amount": 339.06,
         "peg": 0.52,
         "fair_value": 101.85,
         "tag": "🟢보유",
-        "strategy": "피터 린치 GARP"
+        "strategy": "미국 가치주"
       },
       {
         "symbol": "CSGP",
         "name": "코스타 그룹",
         "shares": 13,
         "buy_price": 27.61,
-        "current_price": 26.97,
-        "return_pct": -2.32,
-        "eval_amount": 350.61,
+        "current_price": 26.935,
+        "return_pct": -2.44,
+        "eval_amount": 350.155,
         "peg": 0.1,
         "fair_value": 6.3,
         "tag": "🟢보유",
-        "strategy": "피터 린치 GARP"
+        "strategy": "미국 가치주"
       },
       {
         "symbol": "BSX",
         "name": "보스턴 사이언티픽",
         "shares": 8,
         "buy_price": 43.86,
-        "current_price": 43.475,
-        "return_pct": -0.88,
-        "eval_amount": 347.8,
+        "current_price": 43.55,
+        "return_pct": -0.71,
+        "eval_amount": 348.4,
         "peg": 0.62,
         "fair_value": 37.3,
         "tag": "🟢보유",
-        "strategy": "피터 린치 GARP"
+        "strategy": "미국 가치주"
       },
       {
         "symbol": "CF",
         "name": "CF 인더스트리스 홀딩스",
         "shares": 3,
         "buy_price": 116.79,
-        "current_price": 116.74,
-        "return_pct": -0.04,
-        "eval_amount": 350.21999999999997,
+        "current_price": 116.61,
+        "return_pct": -0.15,
+        "eval_amount": 349.83,
         "peg": 0.52,
         "fair_value": 472.15,
         "tag": "🟢보유",
-        "strategy": "피터 린치 GARP"
+        "strategy": "미국 가치주"
       },
       {
         "symbol": "CVS",
         "name": "CVS 헬스",
         "shares": 4,
         "buy_price": 89.47,
-        "current_price": 86.515,
-        "return_pct": -3.3,
-        "eval_amount": 346.06,
+        "current_price": 86.51,
+        "return_pct": -3.31,
+        "eval_amount": 346.04,
         "peg": 0.21,
         "fair_value": 132.65,
         "tag": "🟢보유",
-        "strategy": "피터 린치 GARP"
+        "strategy": "미국 가치주"
       },
       {
         "symbol": "CVX",
         "name": "셰브론",
         "shares": 1,
         "buy_price": 206.76,
-        "current_price": 204.375,
-        "return_pct": -1.15,
-        "eval_amount": 204.375,
+        "current_price": 204.24,
+        "return_pct": -1.22,
+        "eval_amount": 204.24,
         "peg": 0.89,
         "fair_value": 364.0,
         "tag": "🟢보유",
-        "strategy": "피터 린치 GARP"
+        "strategy": "미국 가치주"
       }
     ],
     "holdings_count": 7,
-    "stocks_eval_usd": 2299.76,
+    "stocks_eval_usd": 2299.32,
     "cash_usd": 1367.42,
-    "total_asset_usd": 3667.18,
-    "total_asset_krw": 4962428.0,
-    "profit_pct": -0.38,
+    "total_asset_usd": 3666.74,
+    "total_asset_krw": 4961833.0,
+    "profit_pct": -0.4,
     "exchange_rate": 1353.2
   },
   "binance_coin": {
@@ -172,20 +172,20 @@
       "contracts": 0.001,
       "leverage": 2.0,
       "entry_price": 84753.4,
-      "current_price": 83903.7,
+      "current_price": 83912.2,
       "stop_price": 81787.03,
       "margin": 41.96,
-      "pnl_usd": -0.85,
-      "roe_pct": -2.03,
+      "pnl_usd": -0.84,
+      "roe_pct": -2.0,
       "tag": "🟢롱 포지션",
       "mode": "REAL"
     },
-    "cash_usdt": 33.86,
-    "total_asset_usdt": 74.97,
-    "total_asset_krw": 101450.0,
-    "btc_price": 83903.7,
-    "pnl_usd": -0.85,
-    "roe_pct": -2.03,
-    "profit_pct": -1.22
+    "cash_usdt": 33.87,
+    "total_asset_usdt": 74.99,
+    "total_asset_krw": 101475.0,
+    "btc_price": 83912.2,
+    "pnl_usd": -0.84,
+    "roe_pct": -2.0,
+    "profit_pct": -1.2
   }
 }
