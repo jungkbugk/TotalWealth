@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-09-29 14:12:46",
-  "total_net_worth_krw": 10222761.0,
-  "exchange_rate": 1358.18,
+  "timestamp": "2026-09-29 14:22:44",
+  "total_net_worth_krw": 10213196.0,
+  "exchange_rate": 1356.58,
   "kr_minervini": {
     "status": "RUNNING",
     "strategy_name": "마크 미너비니 SEPA",
@@ -12,9 +12,9 @@
         "name": "피에스케이홀딩스",
         "shares": 7,
         "buy_price": 170300.0,
-        "current_price": 178600.0,
-        "return_pct": 4.87,
-        "eval_amount": 1250200.0,
+        "current_price": 178400.0,
+        "return_pct": 4.76,
+        "eval_amount": 1248800.0,
         "stop_price": 157528.0,
         "ma50": 126849.0,
         "tag": "🟢정상추세",
@@ -25,20 +25,33 @@
         "name": "샘씨엔에스",
         "shares": 67,
         "buy_price": 18570.0,
-        "current_price": 19880.0,
-        "return_pct": 7.05,
-        "eval_amount": 1331960.0,
+        "current_price": 19920.0,
+        "return_pct": 7.27,
+        "eval_amount": 1334640.0,
         "stop_price": 17177.0,
         "ma50": 14220.6,
         "tag": "🟢정상추세",
         "strategy": "마크 미너비니 SEPA"
+      },
+      {
+        "code": "064290",
+        "name": "인텍플러스",
+        "shares": 22,
+        "buy_price": 56500.0,
+        "current_price": 56700.0,
+        "return_pct": 0.35,
+        "eval_amount": 1247400.0,
+        "stop_price": 52262.0,
+        "ma50": 37132.0,
+        "tag": "🟢정상추세",
+        "strategy": "마크 미너비니 SEPA"
       }
     ],
-    "holdings_count": 2,
-    "stocks_eval_krw": 2582160.0,
-    "cash_krw": 2556410.0,
-    "total_asset_krw": 5138570.0,
-    "profit_pct": 2.77,
+    "holdings_count": 3,
+    "stocks_eval_krw": 3830840.0,
+    "cash_krw": 1304050.0,
+    "total_asset_krw": 5134890.0,
+    "profit_pct": 2.7,
     "regime": "KOSPI 50일선 정상 레짐"
   },
   "us_peter_lynch": {
@@ -142,9 +155,9 @@
     "stocks_eval_usd": 2297.43,
     "cash_usd": 1372.35,
     "total_asset_usd": 3669.78,
-    "total_asset_krw": 4984222.0,
+    "total_asset_krw": 4978350.0,
     "profit_pct": -0.31,
-    "exchange_rate": 1358.18
+    "exchange_rate": 1356.58
   },
   "binance_coin": {
     "status": "RUNNING",
@@ -156,18 +169,18 @@
       "contracts": 0.001,
       "leverage": 2.0,
       "entry_price": 84753.4,
-      "current_price": 83218.2,
+      "current_price": 83255.7,
       "stop_price": 81787.03,
-      "margin": 41.61,
-      "pnl_usd": -1.54,
-      "roe_pct": -3.69,
+      "margin": 41.63,
+      "pnl_usd": -1.5,
+      "roe_pct": -3.6,
       "tag": "🟢롱 포지션"
     },
-    "cash_usdt": 33.53,
-    "total_asset_usdt": 73.6,
-    "total_asset_krw": 99969.0,
-    "btc_price": 83218.2,
-    "pnl_usd": -1.54,
-    "roe_pct": -3.69
+    "cash_usdt": 33.55,
+    "total_asset_usdt": 73.68,
+    "total_asset_krw": 99956.0,
+    "btc_price": 83255.7,
+    "pnl_usd": -1.5,
+    "roe_pct": -3.6
   }
 }
