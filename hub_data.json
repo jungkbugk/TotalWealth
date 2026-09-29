@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-09-29 21:21:08",
-  "total_net_worth_krw": 10244901.0,
+  "timestamp": "2026-09-29 21:31:08",
+  "total_net_worth_krw": 10244855.0,
   "exchange_rate": 1353.2,
   "kr_minervini": {
     "status": "RUNNING",
@@ -80,20 +80,20 @@
       "contracts": 0.001,
       "leverage": 2.0,
       "entry_price": 84753.4,
-      "current_price": 84196.3,
+      "current_price": 84182.3,
       "stop_price": 81787.03,
-      "margin": 42.1,
-      "pnl_usd": -0.56,
-      "roe_pct": -1.32,
+      "margin": 42.09,
+      "pnl_usd": -0.57,
+      "roe_pct": -1.36,
       "tag": "🟢롱 포지션",
       "mode": "REAL"
     },
-    "cash_usdt": 34.02,
-    "total_asset_usdt": 75.56,
-    "total_asset_krw": 102252.0,
-    "btc_price": 84196.3,
-    "pnl_usd": -0.56,
-    "roe_pct": -1.32,
-    "profit_pct": -0.44
+    "cash_usdt": 34.01,
+    "total_asset_usdt": 75.53,
+    "total_asset_krw": 102206.0,
+    "btc_price": 84182.3,
+    "pnl_usd": -0.57,
+    "roe_pct": -1.36,
+    "profit_pct": -0.49
   }
 }
