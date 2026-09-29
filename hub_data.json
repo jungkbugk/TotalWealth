@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-09-29 12:02:46",
-  "total_net_worth_krw": 10247911.0,
-  "exchange_rate": 1359.48,
+  "timestamp": "2026-09-29 12:12:47",
+  "total_net_worth_krw": 10237395.0,
+  "exchange_rate": 1358.54,
   "kr_minervini": {
     "status": "RUNNING",
     "strategy_name": "마크 미너비니 SEPA",
@@ -25,9 +25,9 @@
         "name": "샘씨엔에스",
         "shares": 67,
         "buy_price": 18570.0,
-        "current_price": 19870.0,
-        "return_pct": 7.0,
-        "eval_amount": 1331290.0,
+        "current_price": 19750.0,
+        "return_pct": 6.35,
+        "eval_amount": 1323250.0,
         "stop_price": 17177.0,
         "ma50": 14220.6,
         "tag": "🟢정상추세",
@@ -35,10 +35,10 @@
       }
     ],
     "holdings_count": 2,
-    "stocks_eval_krw": 2591990.0,
-    "cash_krw": 2567550.0,
-    "total_asset_krw": 5159540.0,
-    "profit_pct": 3.19,
+    "stocks_eval_krw": 2583950.0,
+    "cash_krw": 2568770.0,
+    "total_asset_krw": 5152720.0,
+    "profit_pct": 3.05,
     "regime": "KOSPI 50일선 정상 레짐"
   },
   "us_peter_lynch": {
@@ -142,9 +142,9 @@
     "stocks_eval_usd": 2297.43,
     "cash_usd": 1372.35,
     "total_asset_usd": 3669.78,
-    "total_asset_krw": 4988993.0,
+    "total_asset_krw": 4985543.0,
     "profit_pct": -0.31,
-    "exchange_rate": 1359.48
+    "exchange_rate": 1358.54
   },
   "binance_coin": {
     "status": "RUNNING",
@@ -156,18 +156,18 @@
       "contracts": 0.001,
       "leverage": 2.0,
       "entry_price": 84753.4,
-      "current_price": 82963.4,
+      "current_price": 82902.6,
       "stop_price": 81787.03,
-      "margin": 41.48,
-      "pnl_usd": -1.79,
-      "roe_pct": -4.32,
+      "margin": 41.45,
+      "pnl_usd": -1.85,
+      "roe_pct": -4.46,
       "tag": "🟢롱 포지션"
     },
-    "cash_usdt": 33.41,
-    "total_asset_usdt": 73.1,
-    "total_asset_krw": 99378.0,
-    "btc_price": 82963.4,
-    "pnl_usd": -1.79,
-    "roe_pct": -4.32
+    "cash_usdt": 33.37,
+    "total_asset_usdt": 72.97,
+    "total_asset_krw": 99132.0,
+    "btc_price": 82902.6,
+    "pnl_usd": -1.85,
+    "roe_pct": -4.46
   }
 }
