@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-09-29 09:22:43",
-  "total_net_worth_krw": 10142536.0,
-  "exchange_rate": 1360.38,
+  "timestamp": "2026-09-29 09:32:46",
+  "total_net_worth_krw": 10200972.0,
+  "exchange_rate": 1357.68,
   "kr_minervini": {
     "status": "RUNNING",
     "strategy_name": "마크 미너비니 SEPA",
@@ -12,9 +12,9 @@
         "name": "피에스케이홀딩스",
         "shares": 7,
         "buy_price": 170300.0,
-        "current_price": 168400.0,
-        "return_pct": -1.12,
-        "eval_amount": 1178800.0,
+        "current_price": 171600.0,
+        "return_pct": 0.76,
+        "eval_amount": 1201200.0,
         "stop_price": 157528.0,
         "ma50": 126849.0,
         "tag": "🟢정상추세",
@@ -25,9 +25,9 @@
         "name": "샘씨엔에스",
         "shares": 67,
         "buy_price": 18570.0,
-        "current_price": 18790.0,
-        "return_pct": 1.18,
-        "eval_amount": 1258930.0,
+        "current_price": 18840.0,
+        "return_pct": 1.45,
+        "eval_amount": 1262280.0,
         "stop_price": 17177.0,
         "ma50": 14220.6,
         "tag": "🟢정상추세",
@@ -35,10 +35,10 @@
       }
     ],
     "holdings_count": 2,
-    "stocks_eval_krw": 2437730.0,
-    "cash_krw": 2612030.0,
-    "total_asset_krw": 5049760.0,
-    "profit_pct": 1.0,
+    "stocks_eval_krw": 2463480.0,
+    "cash_krw": 2654590.0,
+    "total_asset_krw": 5118070.0,
+    "profit_pct": 2.36,
     "regime": "KOSPI 50일선 정상 레짐"
   },
   "us_peter_lynch": {
@@ -142,9 +142,9 @@
     "stocks_eval_usd": 2297.43,
     "cash_usd": 1372.35,
     "total_asset_usd": 3669.78,
-    "total_asset_krw": 4992295.0,
+    "total_asset_krw": 4982387.0,
     "profit_pct": -0.31,
-    "exchange_rate": 1360.38
+    "exchange_rate": 1357.68
   },
   "binance_coin": {
     "status": "RUNNING",
@@ -156,18 +156,18 @@
       "contracts": 0.001,
       "leverage": 2.0,
       "entry_price": 84753.4,
-      "current_price": 83346.0,
+      "current_price": 83437.6,
       "stop_price": 81787.03,
-      "margin": 41.67,
-      "pnl_usd": -1.41,
-      "roe_pct": -3.38,
+      "margin": 41.71,
+      "pnl_usd": -1.32,
+      "roe_pct": -3.15,
       "tag": "🟢롱 포지션"
     },
-    "cash_usdt": 33.6,
-    "total_asset_usdt": 73.86,
-    "total_asset_krw": 100481.0,
-    "btc_price": 83346.0,
-    "pnl_usd": -1.41,
-    "roe_pct": -3.38
+    "cash_usdt": 33.64,
+    "total_asset_usdt": 74.03,
+    "total_asset_krw": 100515.0,
+    "btc_price": 83437.6,
+    "pnl_usd": -1.32,
+    "roe_pct": -3.15
   }
 }
