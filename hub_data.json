@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-09-29 17:22:46",
-  "total_net_worth_krw": 10244882.0,
-  "exchange_rate": 1357.32,
+  "timestamp": "2026-09-29 17:32:46",
+  "total_net_worth_krw": 10245674.0,
+  "exchange_rate": 1357.7,
   "kr_minervini": {
     "status": "RUNNING",
     "strategy_name": "마크 미너비니 SEPA",
@@ -155,9 +155,9 @@
     "stocks_eval_usd": 2297.43,
     "cash_usd": 1372.35,
     "total_asset_usd": 3669.78,
-    "total_asset_krw": 4981066.0,
+    "total_asset_krw": 4982460.0,
     "profit_pct": -0.31,
-    "exchange_rate": 1357.32
+    "exchange_rate": 1357.7
   },
   "binance_coin": {
     "status": "RUNNING",
@@ -169,18 +169,18 @@
       "contracts": 0.001,
       "leverage": 2.0,
       "entry_price": 84753.4,
-      "current_price": 84268.3,
+      "current_price": 84034.2,
       "stop_price": 81787.03,
-      "margin": 42.15,
-      "pnl_usd": -0.49,
-      "roe_pct": -1.15,
+      "margin": 42.02,
+      "pnl_usd": -0.72,
+      "roe_pct": -1.71,
       "tag": "🟢롱 포지션"
     },
-    "cash_usdt": 34.04,
-    "total_asset_usdt": 75.7,
-    "total_asset_krw": 102756.0,
-    "btc_price": 84268.3,
-    "pnl_usd": -0.49,
-    "roe_pct": -1.15
+    "cash_usdt": 33.94,
+    "total_asset_usdt": 75.24,
+    "total_asset_krw": 102154.0,
+    "btc_price": 84034.2,
+    "pnl_usd": -0.72,
+    "roe_pct": -1.71
   }
 }
