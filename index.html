@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#080b11">
+    <title>3대 퀀트 자동매매 통합 관제 허브 | Total Wealth</title>
+    <style>
+        :root {
+            --bg-base: #080b11;
+            --bg-card: #101522;
+            --bg-card-hover: #161c2d;
+            --bg-sub: #171f30;
+            --border-color: #202b3f;
+            --text-main: #cbd5e1;
+            --text-heading: #f8fafc;
+            --text-muted: #8492a6;
+            --accent-blue: #38bdf8;
+            --accent-green: #10b981;
+            --accent-gold: #f59e0b;
+            --accent-purple: #a855f7;
+            --accent-red: #ef4444;
+            --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+            line-height: 1.5;
+            padding: 16px 12px;
+            padding-bottom: 80px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* 상단 유틸리티 배너 */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(16, 21, 34, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 10px 16px;
+            margin-bottom: 14px;
+            font-size: 13px;
+        }
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--accent-green);
+            box-shadow: 0 0 10px var(--accent-green);
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.25); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .quick-links {
+            display: flex;
+            gap: 8px;
+        }
+        .btn-portal {
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--accent-blue);
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn-portal:hover { background: rgba(56, 189, 248, 0.25); color: #fff; }
+
+        /* 1. 최상단 통합 순자산 전광판 */
+        .net-worth-hero {
+            background: linear-gradient(135deg, #131b2e 0%, #0d121f 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 24px 20px;
+            margin-bottom: 18px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 6px;
+        }
+        .hero-amount {
+            font-size: 34px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .hero-sub {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        .hero-sub strong { color: var(--accent-gold); }
+
+        /* 자산 배분 비중 바 */
+        .asset-bar-wrap {
+            background: #080b11;
+            border-radius: 8px;
+            height: 12px;
+            overflow: hidden;
+            display: flex;
+            margin-bottom: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .bar-kr { background: var(--accent-blue); width: 51.7%; }
+        .bar-us { background: var(--accent-green); width: 23.3%; }
+        .bar-coin { background: var(--accent-gold); width: 25.0%; }
+
+        .asset-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 12px;
+        }
+        .legend-item { display: flex; align-items: center; gap: 6px; }
+        .dot-kr { width: 10px; height: 10px; border-radius: 3px; background: var(--accent-blue); }
+        .dot-us { width: 10px; height: 10px; border-radius: 3px; background: var(--accent-green); }
+        .dot-coin { width: 10px; height: 10px; border-radius: 3px; background: var(--accent-gold); }
+
+        /* 2. 3대 전략 핵심 전광판 카드 그리드 */
+        .grid-3col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+        .strat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s;
+        }
+        .strat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .strat-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-heading);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .badge {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .badge-blue { background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); }
+        .badge-green { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+        .badge-gold { background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .m-box {
+            background: var(--bg-sub);
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .m-label { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+        .m-val { font-size: 15px; font-weight: 700; color: #fff; }
+
+        .card-action {
+            margin-top: 10px;
+        }
+        .btn-detail {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-detail:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+
+        /* 3. 모바일 스티키 탭 */
+        .tab-nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+        .tab-btn {
+            flex: 1;
+            min-width: 100px;
+            text-align: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: var(--accent-blue);
+            color: #080b11;
+            border-color: var(--accent-blue);
+            font-weight: 700;
+        }
+
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+
+        /* 종목 리스트 카드 */
+        .stock-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .stock-main {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .stock-sym {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .stock-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .stock-right {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .stock-price {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .stock-ret {
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .ret-plus { color: var(--accent-green); }
+        .ret-minus { color: var(--accent-red); }
+
+        /* 새로고침 안내 풋터 */
+        .footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 12px;
+            margin-top: 30px;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 상단 유틸리티 배너 -->
+        <div class="top-bar">
+            <div class="live-badge">
+                <span class="pulse-dot"></span>
+                <span>3대 퀀트 관제 허브</span>
+                <span style="font-size:11px;color:var(--text-muted);font-weight:500;">국장 RUNNING · 미장 RUNNING · 코인 RUNNING</span>
+            </div>
+            <div class="quick-links">
+                <a href="https://jungkbugk.github.io/minervini-krx/" target="_blank" class="btn-portal">🇰🇷 미너비니 ↗</a>
+                <a href="https://jungkbugk.github.io/PeterLynch/" target="_blank" class="btn-portal">🇺🇸 미국 가치주 ↗</a>
+            </div>
+        </div>
+
+        <!-- 최상단 통합 순자산 전광판 -->
+        <div class="net-worth-hero">
+            <div class="hero-label">Total Net Worth (3대 자산 총 평가액)</div>
+            <div class="hero-amount">₩9,987,382</div>
+            <div class="hero-sub">
+                <span>기준 환율: <strong>$1353.2 KRW</strong></span>
+                <span>·</span>
+                <span>업데이트: 2026-09-29 23:53:30</span>
+            </div>
+
+            <!-- 자산 배분 비중 바 -->
+            <div class="asset-bar-wrap">
+                <div class="bar-kr" title="국장 미너비니: 51.7%"></div>
+                <div class="bar-us" title="미장 미국 가치주: 23.3%"></div>
+                <div class="bar-coin" title="코인 바이낸스: 25.0%"></div>
+            </div>
+            <div class="asset-legend">
+                <div class="legend-item"><span class="dot-kr"></span> 🇰🇷 국장 미너비니 (51.7%)</div>
+                <div class="legend-item"><span class="dot-us"></span> 🇺🇸 미장 미국 가치주 (23.3%)</div>
+                <div class="legend-item"><span class="dot-coin"></span> 🪙 바이낸스 코인 (25.0%)</div>
+            </div>
+        </div>
+
+        <!-- 3대 전략 핵심 전광판 카드 그리드 -->
+        <div class="grid-3col">
+            <!-- 1. 국장 미너비니 카드 -->
+            <div class="strat-card">
+                <div class="strat-header">
+                    <div class="strat-title">🇰🇷 마크 미너비니</div>
+                    <span class="badge badge-blue">KOSPI SEPA v3</span>
+                </div>
+                <div class="metric-grid">
+                    <div class="m-box">
+                        <div class="m-label">평가 자산</div>
+                        <div class="m-val">₩5,161,060.0</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">보유 종목</div>
+                        <div class="m-val">3개 종목</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">주식 평가액</div>
+                        <div class="m-val">₩3,840,850.0</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">현금 예수금</div>
+                        <div class="m-val">₩1,320,210.0</div>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="https://jungkbugk.github.io/minervini-krx/" target="_blank" class="btn-detail">국장 전용 상세 대시보드 열기 ↗</a>
+                </div>
+            </div>
+
+            <!-- 2. 미장 미국 가치주 카드 -->
+            <div class="strat-card">
+                <div class="strat-header">
+                    <div class="strat-title">🇺🇸 미국 가치주</div>
+                    <span class="badge badge-green">S&P 500 가치주</span>
+                </div>
+                <div class="metric-grid">
+                    <div class="m-box">
+                        <div class="m-label">외화 평가 자산</div>
+                        <div class="m-val">$1,718.05</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">원화 환산</div>
+                        <div class="m-val">₩2,324,865.0</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">보유 종목</div>
+                        <div class="m-val">1개 종목</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">외화 예수금</div>
+                        <div class="m-val">$1,367.42</div>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="https://jungkbugk.github.io/PeterLynch/" target="_blank" class="btn-detail">미장 전용 상세 대시보드 열기 ↗</a>
+                </div>
+            </div>
+
+            <!-- 3. 바이낸스 코인 선물 카드 -->
+            <div class="strat-card">
+                <div class="strat-header">
+                    <div class="strat-title">🪙 바이낸스 선물</div>
+                    <span class="badge badge-gold">BTC 4h 추세 v2</span>
+                </div>
+                <div class="metric-grid">
+                    <div class="m-box">
+                        <div class="m-label">포지션</div>
+                        <div class="m-val" style="color: var(--accent-green);">LONG</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">미실현 PnL</div>
+                        <div class="m-val" style="color: var(--accent-red);">$-0.99 (-2.4%)</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">BTC 시세</div>
+                        <div class="m-val">$83,762.9</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">총 자산 (USDT)</div>
+                        <div class="m-val">$1,848.55</div>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <div class="btn-detail" style="cursor: default;">실전 레버리지 2.0x 가동 중</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. 하단 상세 탭 네비게이션 -->
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('tab-all')">전체 포트폴리오</button>
+            <button class="tab-btn" onclick="switchTab('tab-kr')">🇰🇷 국장 미너비니 (3)</button>
+            <button class="tab-btn" onclick="switchTab('tab-us')">🇺🇸 미장 미국 가치주 (1)</button>
+            <button class="tab-btn" onclick="switchTab('tab-coin')">🪙 바이낸스 선물</button>
+        </div>
+
+        <!-- 탭 1: 전체 포트폴리오 모아보기 -->
+        <div class="tab-pane active" id="tab-all">
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇰🇷 피에스케이홀딩스 <span style="font-size: 11px; color: var(--accent-blue); font-weight: normal;">031980</span></div>
+                    <div class="stock-meta">7주 · 매수가 ₩170,300 · 손절선 ₩157,528</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">₩180,800</div>
+                    <div class="stock-ret ret-plus">+6.17% (₩1,265,600)</div>
+                </div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇰🇷 인텍플러스 <span style="font-size: 11px; color: var(--accent-blue); font-weight: normal;">064290</span></div>
+                    <div class="stock-meta">22주 · 매수가 ₩56,500 · 손절선 ₩52,262</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">₩56,300</div>
+                    <div class="stock-ret ret-minus">-0.35% (₩1,238,600)</div>
+                </div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇰🇷 샘씨엔에스 <span style="font-size: 11px; color: var(--accent-blue); font-weight: normal;">252990</span></div>
+                    <div class="stock-meta">67주 · 매수가 ₩18,570 · 손절선 ₩17,177</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">₩19,950</div>
+                    <div class="stock-ret ret-plus">+7.43% (₩1,336,650)</div>
+                </div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 CF <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">CF 인더스트리스 홀딩스</span></div>
+                    <div class="stock-meta">3주 · 매수가 $116.79 · PEG 0.52</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$116.88</div>
+                    <div class="stock-ret ret-plus">+0.07% ($350.6)</div>
+                </div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🪙 BTC/USDT <span style="font-size: 11px; color: var(--accent-gold); font-weight: 600;">LONG 2.0x</span></div>
+                    <div class="stock-meta">0.001 BTC · 진입가 $84,753.4 · 손절선 $81,787.0</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$83,762.9</div>
+                    <div class="stock-ret ret-minus">$-0.99 (-2.4%)</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 탭 2: 국장 미너비니 상세 -->
+        <div class="tab-pane" id="tab-kr">
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇰🇷 피에스케이홀딩스 <span class="badge badge-blue">🟢정상추세</span></div>
+                    <div class="stock-meta">7주 · 매수가 ₩170,300 · 50일선 ₩126,849</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">₩180,800</div>
+                    <div class="stock-ret ret-plus">+6.17% (₩1,265,600)</div>
+                </div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇰🇷 인텍플러스 <span class="badge badge-blue">🟢정상추세</span></div>
+                    <div class="stock-meta">22주 · 매수가 ₩56,500 · 50일선 ₩37,132</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">₩56,300</div>
+                    <div class="stock-ret ret-minus">-0.35% (₩1,238,600)</div>
+                </div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇰🇷 샘씨엔에스 <span class="badge badge-blue">🟢정상추세</span></div>
+                    <div class="stock-meta">67주 · 매수가 ₩18,570 · 50일선 ₩14,221</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">₩19,950</div>
+                    <div class="stock-ret ret-plus">+7.43% (₩1,336,650)</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 탭 3: 미장 미국 가치주 상세 -->
+        <div class="tab-pane" id="tab-us">
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 CF <span style="font-size: 11px; color: var(--accent-green);">🟢보유</span></div>
+                    <div class="stock-meta">CF 인더스트리스 홀딩스 · 3주 · 적정가 $472.15</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$116.88</div>
+                    <div class="stock-ret ret-plus">+0.07% ($350.6)</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 탭 4: 바이낸스 코인 상세 -->
+        <div class="tab-pane" id="tab-coin">
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🪙 BTC/USDT <span class="badge badge-gold">LONG 2.0x</span></div>
+                    <div class="stock-meta">계약수: 0.001 BTC · 증거금: $41.88 · 손절: $81,787.0</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$83,762.9</div>
+                    <div class="stock-ret ret-minus">$-0.99 (-2.4%)</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 풋터 안내 -->
+        <div class="footer">
+            <p>💡 스마트폰 브라우저 메뉴에서 <strong>'홈 화면에 추가'</strong>를 누르시면 앱처럼 아이콘으로 바로 접속하실 수 있습니다.</p>
+            <p>🔄 10분 주기 자동 백그라운드 동기화 시스템 가동 중 · KIS & Binance 실시간 연동</p>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) targetPane.classList.add('active');
+        }
+    </script>
+</body>
+</html>

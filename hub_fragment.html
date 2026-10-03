@@ -1,0 +1,926 @@
+<style>
+        :root {
+            --bg-base: #080b11;
+            --bg-card: #101522;
+            --bg-card-hover: #161c2d;
+            --bg-sub: #171f30;
+            --border-color: #202b3f;
+            --text-main: #cbd5e1;
+            --text-heading: #f8fafc;
+            --text-muted: #8492a6;
+            --accent-blue: #38bdf8;
+            --accent-green: #10b981;
+            --accent-gold: #f59e0b;
+            --accent-purple: #a855f7;
+            --accent-red: #ef4444;
+            --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+            line-height: 1.5;
+            padding: 16px 12px;
+            padding-bottom: 80px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* 상단 유틸리티 배너 */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(16, 21, 34, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 10px 16px;
+            margin-bottom: 14px;
+            font-size: 13px;
+        }
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--accent-green);
+            box-shadow: 0 0 10px var(--accent-green);
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.25); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .quick-links {
+            display: flex;
+            gap: 8px;
+        }
+        .btn-portal {
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--accent-blue);
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn-portal:hover { background: rgba(56, 189, 248, 0.25); color: #fff; }
+
+        /* 1. 최상단 통합 순자산 전광판 */
+        .net-worth-hero {
+            background: linear-gradient(135deg, #131b2e 0%, #0d121f 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 24px 20px;
+            margin-bottom: 18px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 6px;
+        }
+        .hero-amount {
+            font-size: 34px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .hero-sub {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        .hero-sub strong { color: var(--accent-gold); }
+
+        /* 자산 배분 비중 바 */
+        .asset-bar-wrap {
+            background: #080b11;
+            border-radius: 8px;
+            height: 12px;
+            overflow: hidden;
+            display: flex;
+            margin-bottom: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .bar-kr { background: var(--accent-blue); width: 40.4%; }
+        .bar-us { background: var(--accent-green); width: 39.3%; }
+        .bar-coin { background: var(--accent-gold); width: 20.3%; }
+
+        .asset-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 12px;
+        }
+        .legend-item { display: flex; align-items: center; gap: 6px; }
+        .dot-kr { width: 10px; height: 10px; border-radius: 3px; background: var(--accent-blue); }
+        .dot-us { width: 10px; height: 10px; border-radius: 3px; background: var(--accent-green); }
+        .dot-coin { width: 10px; height: 10px; border-radius: 3px; background: var(--accent-gold); }
+
+        /* 2. 3대 전략 핵심 전광판 카드 그리드 */
+        .grid-3col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+        .strat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s;
+        }
+        .strat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .strat-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-heading);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .badge {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .badge-blue { background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); }
+        .badge-green { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+        .badge-gold { background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .m-box {
+            background: var(--bg-sub);
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .m-label { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+        .m-val { font-size: 15px; font-weight: 700; color: #fff; }
+
+        .card-action {
+            margin-top: 10px;
+        }
+        .btn-detail {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-detail:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+
+        /* 3. 모바일 스티키 탭 */
+        .tab-nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+        .tab-btn {
+            flex: 1;
+            min-width: 100px;
+            text-align: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: var(--accent-blue);
+            color: #080b11;
+            border-color: var(--accent-blue);
+            font-weight: 700;
+        }
+
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+
+        /* 종목 리스트 카드 */
+        .stock-extra { flex-basis: 100%; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border-color); font-size: 12px; color: var(--text-muted); }
+        .stock-extra .sec-tag { display:inline-block; background: rgba(56,189,248,0.12); color: var(--accent-blue); border-radius: 6px; padding: 1px 8px; font-weight: 600; margin-right: 6px; }
+        .stock-extra .why { margin: 6px 0 4px; line-height: 1.55; color: var(--text-main); }
+        .stock-extra svg { display:block; margin-top: 6px; border-radius: 6px; background: rgba(255,255,255,0.02); }
+        .stock-item {
+            flex-wrap: wrap;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .stock-main {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .stock-sym {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .stock-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .stock-right {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .stock-price {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .stock-ret {
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .ret-plus { color: var(--accent-green); }
+        .ret-minus { color: var(--accent-red); }
+
+        /* 새로고침 안내 풋터 */
+        .footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 12px;
+            margin-top: 30px;
+            line-height: 1.8;
+        }
+    </style>
+    <div class="container">
+        <!-- 상단 유틸리티 배너 -->
+        <div class="top-bar">
+            <div class="live-badge">
+                <span class="pulse-dot"></span>
+                <span>3대 퀀트 관제 허브</span>
+                <span style="font-size:11px;color:var(--text-muted);font-weight:500;">국장 RUNNING · 미장 RUNNING · 코인 RUNNING</span>
+            </div>
+            <div class="quick-links">
+                <a href="https://jungkbugk.github.io/minervini-krx/" target="_blank" class="btn-portal">🇰🇷 미너비니 ↗</a>
+                <a href="https://jungkbugk.github.io/PeterLynch/" target="_blank" class="btn-portal">🇺🇸 미국 가치주 ↗</a>
+            </div>
+        </div>
+
+        <!-- 최상단 통합 순자산 전광판 -->
+        <div class="net-worth-hero">
+            <div class="hero-label">Total Net Worth (3대 자산 총 평가액)</div>
+            <div class="hero-amount">₩12,547,795</div>
+            <div class="hero-sub">
+                <span>기준 환율: <strong>$1353.2 KRW</strong></span>
+                <span>·</span>
+                <span>업데이트: 2026-10-04 00:00:10</span>
+            </div>
+
+            <!-- 자산 배분 비중 바 -->
+            <div class="asset-bar-wrap">
+                <div class="bar-kr" title="국장 미너비니: 40.4%"></div>
+                <div class="bar-us" title="미장 미국 가치주: 39.3%"></div>
+                <div class="bar-coin" title="코인 바이낸스: 20.3%"></div>
+            </div>
+            <div class="asset-legend">
+                <div class="legend-item"><span class="dot-kr"></span> 🇰🇷 국장 미너비니 (40.4%)</div>
+                <div class="legend-item"><span class="dot-us"></span> 🇺🇸 미장 미국 가치주 (39.3%)</div>
+                <div class="legend-item"><span class="dot-coin"></span> 🪙 바이낸스 코인 (20.3%)</div>
+            </div>
+        </div>
+
+        <!-- 3대 전략 핵심 전광판 카드 그리드 -->
+        <div class="grid-3col">
+            <!-- 1. 국장 미너비니 카드 -->
+            <div class="strat-card">
+                <div class="strat-header">
+                    <div class="strat-title">🇰🇷 마크 미너비니</div>
+                    <span class="badge badge-blue">KOSPI SEPA v3</span>
+                </div>
+                <div class="metric-grid">
+                    <div class="m-box">
+                        <div class="m-label">평가 자산</div>
+                        <div class="m-val">₩5,070,783.0</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">보유 종목</div>
+                        <div class="m-val">3개 종목</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">주식 평가액</div>
+                        <div class="m-val">₩2,950,120.0</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">현금 예수금</div>
+                        <div class="m-val">₩2,120,663.0</div>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="https://jungkbugk.github.io/minervini-krx/" target="_blank" class="btn-detail">국장 전용 상세 대시보드 열기 ↗</a>
+                </div>
+            </div>
+
+            <!-- 2. 미장 미국 가치주 카드 -->
+            <div class="strat-card">
+                <div class="strat-header">
+                    <div class="strat-title">🇺🇸 미국 가치주</div>
+                    <span class="badge badge-green">S&P 500 가치주</span>
+                </div>
+                <div class="metric-grid">
+                    <div class="m-box">
+                        <div class="m-label">외화 평가 자산</div>
+                        <div class="m-val">$3,640.67</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">원화 환산</div>
+                        <div class="m-val">₩4,926,555.0</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">보유 종목</div>
+                        <div class="m-val">15개 종목</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">외화 예수금</div>
+                        <div class="m-val">$510.71</div>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="https://jungkbugk.github.io/PeterLynch/" target="_blank" class="btn-detail">미장 전용 상세 대시보드 열기 ↗</a>
+                </div>
+            </div>
+
+            <!-- 3. 바이낸스 코인 선물 카드 -->
+            <div class="strat-card">
+                <div class="strat-header">
+                    <div class="strat-title">🪙 바이낸스 선물</div>
+                    <span class="badge badge-gold">BTC 4h 추세 v2</span>
+                </div>
+                <div class="metric-grid">
+                    <div class="m-box">
+                        <div class="m-label">포지션</div>
+                        <div class="m-val" style="color: var(--accent-green);">LONG</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">미실현 PnL</div>
+                        <div class="m-val" style="color: var(--accent-green);">$+28.81 (+4.2%)</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">BTC 시세</div>
+                        <div class="m-val">$84,810.2</div>
+                    </div>
+                    <div class="m-box">
+                        <div class="m-label">총 자산 (USDT)</div>
+                        <div class="m-val">$1,884.76</div>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <div class="btn-detail" style="cursor: default;">실전 레버리지 2.0x 가동 중</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. 하단 상세 탭 네비게이션 -->
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('tab-all')">전체 포트폴리오</button>
+            <button class="tab-btn" onclick="switchTab('tab-kr')">🇰🇷 국장 미너비니 (3)</button>
+            <button class="tab-btn" onclick="switchTab('tab-us')">🇺🇸 미장 미국 가치주 (15)</button>
+            <button class="tab-btn" onclick="switchTab('tab-coin')">🪙 바이낸스 선물</button>
+        </div>
+
+        <!-- 탭 1: 전체 포트폴리오 모아보기 -->
+        <div class="tab-pane active" id="tab-all">
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇰🇷 한온시스템 <span style="font-size: 11px; color: var(--accent-blue); font-weight: normal;">018880</span></div>
+                    <div class="stock-meta">259주 · 매수가 ₩3,830 · 손절선 ₩3,543</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">₩3,830</div>
+                    <div class="stock-ret ret-plus">0.00% (₩991,970)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">자동차부품</span>매수일 2026-10-02</div><div class="why">📌 종가베팅 종가 동시호가 매수</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇰🇷 대주전자재료 <span style="font-size: 11px; color: var(--accent-blue); font-weight: normal;">078600</span></div>
+                    <div class="stock-meta">9주 · 매수가 ₩108,300 · 손절선 ₩100,178</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">₩108,300</div>
+                    <div class="stock-ret ret-plus">0.00% (₩974,700)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">전자장비와기기</span>매수일 2026-10-02</div><div class="why">📌 종가베팅 종가 동시호가 매수</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇰🇷 LS머트리얼즈 <span style="font-size: 11px; color: var(--accent-blue); font-weight: normal;">417200</span></div>
+                    <div class="stock-meta">65주 · 매수가 ₩15,130 · 손절선 ₩13,995</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">₩15,130</div>
+                    <div class="stock-ret ret-plus">0.00% (₩983,450)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">전기제품</span>매수일 2026-10-02</div><div class="why">📌 종가베팅 종가 동시호가 매수</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 ACGL <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">아치 캐피털 그룹</span></div>
+                    <div class="stock-meta">2주 · 매수가 $94.16 · PEG nan</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$93.60</div>
+                    <div class="stock-ret ret-minus">-0.59% ($187.2)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">금융</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 3위 · E/P 13.5% · FCF 19.0%</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 APA <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">APA</span></div>
+                    <div class="stock-meta">5주 · 매수가 $42.34 · PEG nan</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$43.68</div>
+                    <div class="stock-ret ret-plus">+3.15% ($218.4)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">에너지</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 29위 · E/P 9.7% · FCF 12.0%</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 CTSH <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">코그니전트 테크놀로지 솔루션스</span></div>
+                    <div class="stock-meta">4주 · 매수가 $56.39 · PEG nan</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$58.51</div>
+                    <div class="stock-ret ret-plus">+3.77% ($234.0)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">기술</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 20위 · E/P 8.6% · FCF 10.1%</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 EXE <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">익스팬드 에너지</span></div>
+                    <div class="stock-meta">2주 · 매수가 $84.00 · PEG nan</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$85.52</div>
+                    <div class="stock-ret ret-plus">+1.80% ($171.0)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">에너지</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 11위 · E/P 9.4% · FCF 8.5%</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 LULU <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">룰루레몬 애슬레티카</span></div>
+                    <div class="stock-meta">2주 · 매수가 $98.07 · PEG nan</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$94.46</div>
+                    <div class="stock-ret ret-minus">-3.68% ($188.9)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">경기소비재</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 25위 · E/P 14.8% · FCF 8.6%</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 CF <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">CF 인더스트리스 홀딩스</span></div>
+                    <div class="stock-meta">3주 · 매수가 $116.79 · PEG 0.52</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$115.01</div>
+                    <div class="stock-ret ret-minus">-1.52% ($345.0)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">소재</span>매수일 2026-09-28</div><div class="why">📌 분기 리밸런싱 매수 (구 규칙: PEG 성장주) | 현재 스크리너 50위 · E/P 8.2% · FCF 10.1%</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 DHI <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">닥터 호턴</span></div>
+                    <div class="stock-meta">1주 · 매수가 $139.24 · PEG nan</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$135.00</div>
+                    <div class="stock-ret ret-minus">-3.05% ($135.0)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">경기소비재</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 18위 · E/P 9.2% · FCF 8.5%</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 EQT <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">EQT</span></div>
+                    <div class="stock-meta">4주 · 매수가 $49.20 · PEG nan</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$50.17</div>
+                    <div class="stock-ret ret-plus">+1.96% ($200.7)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">에너지</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 24위 · E/P 6.7% · FCF 9.3%</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 GPN <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">글로벌 페이먼츠</span></div>
+                    <div class="stock-meta">2주 · 매수가 $83.93 · PEG nan</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$78.38</div>
+                    <div class="stock-ret ret-minus">-6.61% ($156.8)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">산업재</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 21위 · E/P 6.4% · FCF 9.2%</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 PHM <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">풀티 그룹</span></div>
+                    <div class="stock-meta">2주 · 매수가 $118.44 · PEG nan</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$115.73</div>
+                    <div class="stock-ret ret-minus">-2.29% ($231.5)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">경기소비재</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 22위 · E/P 9.9% · FCF 7.8%</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 PNR <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">펜테어</span></div>
+                    <div class="stock-meta">4주 · 매수가 $52.96 · PEG nan</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$53.03</div>
+                    <div class="stock-ret ret-plus">+0.13% ($212.1)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">산업재</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 35위 · E/P 7.7% · FCF 8.8%</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 SYF <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">싱크로니 파이낸셜</span></div>
+                    <div class="stock-meta">3주 · 매수가 $71.76 · PEG nan</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$71.77</div>
+                    <div class="stock-ret ret-plus">+0.01% ($215.3)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">금융</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 2위 · E/P 14.9% · FCF 42.2%</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 TXT <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">텍스트론</span></div>
+                    <div class="stock-meta">3주 · 매수가 $76.33 · PEG nan</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$77.26</div>
+                    <div class="stock-ret ret-plus">+1.23% ($231.8)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">산업재</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 34위 · E/P 6.9% · FCF 7.0%</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 UHS <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">유니버설 헬스 서비시스</span></div>
+                    <div class="stock-meta">1주 · 매수가 $175.43 · PEG nan</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$175.72</div>
+                    <div class="stock-ret ret-plus">+0.17% ($175.7)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">헬스케어</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 15위 · E/P 14.5% · FCF 8.0%</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 VICI <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">비치 프라퍼티스</span></div>
+                    <div class="stock-meta">10주 · 매수가 $23.16 · PEG nan</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$22.65</div>
+                    <div class="stock-ret ret-minus">-2.22% ($226.5)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">부동산</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 4위 · E/P 10.9% · FCF 9.8%</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🪙 BTC/USDT <span style="font-size: 11px; color: var(--accent-gold); font-weight: 600;">LONG 2.0x</span></div>
+                    <div class="stock-meta">0.016 BTC · 진입가 $83,009.4 · 손절선 $49,805.6</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$84,810.2</div>
+                    <div class="stock-ret ret-plus">+$28.81 (+4.2%)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">암호화폐</span>매수일 2026-09-27</div><div class="why">📌 일봉 종가가 SMA100 위 (추세보유 슬리브 진입) · 목표 레버리지 2.00x · ATR 845</div></div>
+            </div>
+
+        </div>
+
+        <!-- 탭 2: 국장 미너비니 상세 -->
+        <div class="tab-pane" id="tab-kr">
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇰🇷 한온시스템 <span class="badge badge-blue">🌇종가베팅</span></div>
+                    <div class="stock-meta">259주 · 매수가 ₩3,830 · 50일선 ₩0</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">₩3,830</div>
+                    <div class="stock-ret ret-plus">0.00% (₩991,970)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">자동차부품</span>매수일 2026-10-02</div><div class="why">📌 종가베팅 종가 동시호가 매수</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,52.5 11.3,54.0 18.6,48.8 25.9,44.3 33.2,44.9 40.5,41.5 47.8,12.7 55.1,4.0 62.4,23.9 69.7,36.1 77.0,22.5 84.3,21.2 91.6,23.9 98.9,43.2 106.2,44.9 113.5,18.7 120.8,37.1 128.1,53.0 135.4,54.5 142.7,56.6 150.0,59.4 157.3,61.9 164.6,63.8 171.9,67.3 179.2,63.8 186.5,74.0 193.8,71.5 201.1,61.7 208.4,57.0 215.7,56.0 223.0,64.3 230.3,64.1 237.6,65.0 244.9,67.3 252.2,63.2 259.5,63.2 266.8,67.5 274.1,66.1 281.4,71.7 288.7,63.9 296.0,55.8" fill="none" stroke="#10b981" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="55.8" y2="55.8" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="63.6" y2="63.6" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="55.8" r="2.6" fill="#10b981"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇰🇷 대주전자재료 <span class="badge badge-blue">🌇종가베팅</span></div>
+                    <div class="stock-meta">9주 · 매수가 ₩108,300 · 50일선 ₩0</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">₩108,300</div>
+                    <div class="stock-ret ret-plus">0.00% (₩974,700)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">전자장비와기기</span>매수일 2026-10-02</div><div class="why">📌 종가베팅 종가 동시호가 매수</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,42.6 11.3,41.3 18.6,33.5 25.9,23.6 33.2,4.0 40.5,13.5 47.8,18.2 55.1,25.7 62.4,20.0 69.7,25.2 77.0,19.3 84.3,21.2 91.6,37.4 98.9,47.6 106.2,42.6 113.5,34.8 120.8,45.8 128.1,52.2 135.4,53.6 142.7,59.9 150.0,63.5 157.3,63.4 164.6,63.1 171.9,68.9 179.2,67.1 186.5,74.0 193.8,68.7 201.1,60.0 208.4,55.9 215.7,55.2 223.0,60.1 230.3,59.8 237.6,57.4 244.9,62.0 252.2,61.0 259.5,60.3 266.8,60.4 274.1,59.7 281.4,60.4 288.7,56.3 296.0,47.8" fill="none" stroke="#10b981" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="47.8" y2="47.8" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="52.5" y2="52.5" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="47.8" r="2.6" fill="#10b981"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇰🇷 LS머트리얼즈 <span class="badge badge-blue">🌇종가베팅</span></div>
+                    <div class="stock-meta">65주 · 매수가 ₩15,130 · 50일선 ₩0</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">₩15,130</div>
+                    <div class="stock-ret ret-plus">0.00% (₩983,450)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">전기제품</span>매수일 2026-10-02</div><div class="why">📌 종가베팅 종가 동시호가 매수</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,38.9 11.3,38.7 18.6,31.2 25.9,31.2 33.2,17.0 40.5,4.0 47.8,7.4 55.1,21.8 62.4,27.8 69.7,37.0 77.0,28.3 84.3,32.3 91.6,43.1 98.9,52.7 106.2,51.8 113.5,46.5 120.8,49.0 128.1,55.4 135.4,55.9 142.7,57.7 150.0,62.2 157.3,63.5 164.6,64.3 171.9,69.5 179.2,66.1 186.5,74.0 193.8,70.0 201.1,65.8 208.4,65.0 215.7,64.3 223.0,66.5 230.3,68.0 237.6,66.8 244.9,69.6 252.2,68.4 259.5,67.2 266.8,64.3 274.1,60.1 281.4,60.6 288.7,59.1 296.0,55.6" fill="none" stroke="#10b981" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="55.6" y2="55.6" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="59.2" y2="59.2" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="55.6" r="2.6" fill="#10b981"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+        </div>
+
+        <!-- 탭 3: 미장 미국 가치주 상세 -->
+        <div class="tab-pane" id="tab-us">
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 ACGL <span style="font-size: 11px; color: var(--accent-green);">🟢보유</span></div>
+                    <div class="stock-meta">아치 캐피털 그룹 · 2주 · 적정가 $174.00</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$93.60</div>
+                    <div class="stock-ret ret-minus">-0.59% ($187.2)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">금융</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 3위 · E/P 13.5% · FCF 19.0%</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,24.1 11.3,21.4 18.6,23.0 25.9,23.8 33.2,27.5 40.5,28.1 47.8,28.7 55.1,29.7 62.4,24.7 69.7,24.2 77.0,33.4 84.3,38.6 91.6,39.4 98.9,35.4 106.2,32.9 113.5,31.5 120.8,28.9 128.1,21.4 135.4,19.5 142.7,11.1 150.0,14.6 157.3,19.5 164.6,13.1 171.9,16.5 179.2,4.0 186.5,15.6 193.8,18.4 201.1,20.1 208.4,20.5 215.7,18.8 223.0,17.8 230.3,15.2 237.6,20.4 244.9,17.0 252.2,24.2 259.5,20.6 266.8,23.1 274.1,26.5 281.4,27.1 288.7,31.6 296.0,29.1" fill="none" stroke="#ef4444" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="28.1" y2="28.1" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="74.0" y2="74.0" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="29.1" r="2.6" fill="#ef4444"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 APA <span style="font-size: 11px; color: var(--accent-green);">🟢보유</span></div>
+                    <div class="stock-meta">APA · 5주 · 적정가 $59.85</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$43.68</div>
+                    <div class="stock-ret ret-plus">+3.15% ($218.4)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">에너지</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 29위 · E/P 9.7% · FCF 12.0%</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,49.3 11.3,55.7 18.6,42.8 25.9,41.0 33.2,29.4 40.5,25.6 47.8,55.4 55.1,48.3 62.4,32.3 69.7,41.4 77.0,50.1 84.3,44.4 91.6,42.0 98.9,50.1 106.2,48.1 113.5,63.6 120.8,62.2 128.1,68.3 135.4,74.0 142.7,63.3 150.0,66.1 157.3,61.9 164.6,59.1 171.9,49.8 179.2,57.4 186.5,45.3 193.8,58.7 201.1,26.5 208.4,31.7 215.7,19.7 223.0,14.5 230.3,25.6 237.6,15.7 244.9,10.5 252.2,7.1 259.5,6.2 266.8,4.0 274.1,20.0 281.4,17.8 288.7,23.9 296.0,13.0" fill="none" stroke="#10b981" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="19.8" y2="19.8" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="73.4" y2="73.4" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="13.0" r="2.6" fill="#10b981"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 CTSH <span style="font-size: 11px; color: var(--accent-green);">🟢보유</span></div>
+                    <div class="stock-meta">코그니전트 테크놀로지 솔루션스 · 4주 · 적정가 $68.40</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$58.51</div>
+                    <div class="stock-ret ret-plus">+3.77% ($234.0)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">기술</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 20위 · E/P 8.6% · FCF 10.1%</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,19.1 11.3,15.6 18.6,22.5 25.9,34.2 33.2,39.0 40.5,41.9 47.8,42.4 55.1,58.3 62.4,42.2 69.7,39.6 77.0,37.2 84.3,26.0 91.6,36.5 98.9,37.8 106.2,40.0 113.5,49.4 120.8,71.4 128.1,74.0 135.4,71.1 142.7,63.0 150.0,66.9 157.3,65.2 164.6,61.1 171.9,65.7 179.2,45.2 186.5,31.1 193.8,29.9 201.1,22.8 208.4,20.0 215.7,23.3 223.0,11.8 230.3,11.2 237.6,4.2 244.9,4.0 252.2,22.1 259.5,5.5 266.8,11.8 274.1,20.8 281.4,24.6 288.7,24.3 296.0,21.3" fill="none" stroke="#10b981" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="27.3" y2="27.3" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="67.0" y2="67.0" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="21.3" r="2.6" fill="#10b981"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 EXE <span style="font-size: 11px; color: var(--accent-green);">🟢보유</span></div>
+                    <div class="stock-meta">익스팬드 에너지 · 2주 · 적정가 $113.55</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$85.52</div>
+                    <div class="stock-ret ret-plus">+1.80% ($171.0)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">에너지</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 11위 · E/P 9.4% · FCF 8.5%</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,15.8 11.3,15.5 18.6,14.6 25.9,14.7 33.2,4.0 40.5,8.4 47.8,15.3 55.1,15.9 62.4,9.7 69.7,11.2 77.0,20.3 84.3,21.3 91.6,18.9 98.9,27.4 106.2,27.4 113.5,29.8 120.8,27.5 128.1,28.0 135.4,26.0 142.7,26.0 150.0,30.2 157.3,29.5 164.6,30.8 171.9,22.0 179.2,27.9 186.5,17.8 193.8,23.7 201.1,11.3 208.4,15.5 215.7,14.1 223.0,12.9 230.3,12.0 237.6,9.1 244.9,7.5 252.2,12.0 259.5,17.9 266.8,27.3 274.1,29.7 281.4,30.0 288.7,35.1 296.0,32.4" fill="none" stroke="#10b981" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="35.2" y2="35.2" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="74.0" y2="74.0" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="32.4" r="2.6" fill="#10b981"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 LULU <span style="font-size: 11px; color: var(--accent-green);">🟢보유</span></div>
+                    <div class="stock-meta">룰루레몬 애슬레티카 · 2주 · 적정가 $198.90</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$94.46</div>
+                    <div class="stock-ret ret-minus">-3.68% ($188.9)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">경기소비재</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 25위 · E/P 14.8% · FCF 8.6%</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,9.0 11.3,4.0 18.6,6.9 25.9,19.2 33.2,26.1 40.5,31.7 47.8,31.0 55.1,38.4 62.4,39.1 69.7,34.3 77.0,31.1 84.3,30.3 91.6,35.6 98.9,38.3 106.2,40.2 113.5,45.5 120.8,47.6 128.1,41.1 135.4,42.0 142.7,43.0 150.0,39.9 157.3,41.2 164.6,41.8 171.9,46.3 179.2,39.1 186.5,40.2 193.8,36.7 201.1,33.5 208.4,39.6 215.7,40.0 223.0,38.5 230.3,42.0 237.6,39.1 244.9,38.0 252.2,54.5 259.5,54.0 266.8,54.7 274.1,51.5 281.4,53.3 288.7,57.1 296.0,58.4" fill="none" stroke="#ef4444" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="55.7" y2="55.7" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="74.0" y2="74.0" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="58.4" r="2.6" fill="#ef4444"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 CF <span style="font-size: 11px; color: var(--accent-green);">🟢보유</span></div>
+                    <div class="stock-meta">CF 인더스트리스 홀딩스 · 3주 · 적정가 $472.15</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$115.01</div>
+                    <div class="stock-ret ret-minus">-1.52% ($345.0)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">소재</span>매수일 2026-09-28</div><div class="why">📌 분기 리밸런싱 매수 (구 규칙: PEG 성장주) | 현재 스크리너 50위 · E/P 8.2% · FCF 10.1%</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,32.0 11.3,40.7 18.6,27.2 25.9,25.6 33.2,24.9 40.5,19.6 47.8,37.5 55.1,23.1 62.4,22.8 69.7,27.6 77.0,35.0 84.3,39.2 91.6,33.4 98.9,45.7 106.2,44.4 113.5,49.5 120.8,54.5 128.1,49.7 135.4,46.3 142.7,36.9 150.0,34.2 157.3,33.0 164.6,25.0 171.9,20.7 179.2,25.9 186.5,22.8 193.8,34.5 201.1,27.9 208.4,34.0 215.7,29.5 223.0,15.8 230.3,21.2 237.6,15.2 244.9,4.4 252.2,4.0 259.5,13.5 266.8,9.9 274.1,28.3 281.4,36.5 288.7,35.7 296.0,36.0" fill="none" stroke="#ef4444" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="33.5" y2="33.5" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="74.0" y2="74.0" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="36.0" r="2.6" fill="#ef4444"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 DHI <span style="font-size: 11px; color: var(--accent-green);">🟢보유</span></div>
+                    <div class="stock-meta">닥터 호턴 · 1주 · 적정가 $173.55</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$135.00</div>
+                    <div class="stock-ret ret-minus">-3.05% ($135.0)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">경기소비재</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 18위 · E/P 9.2% · FCF 8.5%</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,28.4 11.3,23.3 18.6,10.4 25.9,12.5 33.2,18.7 40.5,27.0 47.8,25.2 55.1,33.1 62.4,36.8 69.7,29.2 77.0,25.0 84.3,26.0 91.6,26.6 98.9,21.3 106.2,17.9 113.5,19.7 120.8,15.6 128.1,4.0 135.4,14.5 142.7,16.0 150.0,20.7 157.3,20.8 164.6,28.5 171.9,31.5 179.2,21.2 186.5,30.4 193.8,20.9 201.1,25.8 208.4,22.2 215.7,26.9 223.0,23.9 230.3,22.9 237.6,28.2 244.9,28.4 252.2,34.6 259.5,34.1 266.8,33.0 274.1,28.7 281.4,31.7 288.7,37.2 296.0,39.1" fill="none" stroke="#ef4444" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="34.3" y2="34.3" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="74.0" y2="74.0" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="39.1" r="2.6" fill="#ef4444"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 EQT <span style="font-size: 11px; color: var(--accent-green);">🟢보유</span></div>
+                    <div class="stock-meta">EQT · 4주 · 적정가 $49.65</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$50.17</div>
+                    <div class="stock-ret ret-plus">+1.96% ($200.7)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">에너지</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 24위 · E/P 6.7% · FCF 9.3%</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,14.3 11.3,8.9 18.6,8.1 25.9,8.4 33.2,4.0 40.5,8.1 47.8,16.1 55.1,16.2 62.4,11.5 69.7,10.6 77.0,18.5 84.3,18.2 91.6,18.3 98.9,26.1 106.2,28.4 113.5,30.9 120.8,29.2 128.1,26.1 135.4,26.7 142.7,28.9 150.0,37.8 157.3,36.6 164.6,37.2 171.9,23.9 179.2,29.2 186.5,24.2 193.8,30.1 201.1,21.3 208.4,21.3 215.7,24.2 223.0,22.4 230.3,19.1 237.6,21.0 244.9,16.6 252.2,19.6 259.5,24.0 266.8,32.8 274.1,31.3 281.4,31.3 288.7,38.2 296.0,33.3" fill="none" stroke="#10b981" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="36.3" y2="36.3" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="74.0" y2="74.0" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="33.3" r="2.6" fill="#10b981"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 GPN <span style="font-size: 11px; color: var(--accent-green);">🟢보유</span></div>
+                    <div class="stock-meta">글로벌 페이먼츠 · 2주 · 적정가 $86.70</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$78.38</div>
+                    <div class="stock-ret ret-minus">-6.61% ($156.8)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">산업재</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 21위 · E/P 6.4% · FCF 9.2%</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,62.5 11.3,54.2 18.6,55.8 25.9,63.1 33.2,55.1 40.5,60.6 47.8,61.2 55.1,66.0 62.4,62.3 69.7,53.7 77.0,51.8 84.3,47.4 91.6,64.2 98.9,73.0 106.2,63.9 113.5,66.9 120.8,71.5 128.1,59.3 135.4,47.7 142.7,42.1 150.0,45.5 157.3,40.7 164.6,31.5 171.9,41.5 179.2,20.3 186.5,27.7 193.8,20.2 201.1,23.2 208.4,4.0 215.7,13.8 223.0,7.0 230.3,8.1 237.6,12.3 244.9,10.8 252.2,21.2 259.5,13.7 266.8,24.3 274.1,25.7 281.4,21.9 288.7,32.5 296.0,39.8" fill="none" stroke="#ef4444" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="27.5" y2="27.5" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="74.0" y2="74.0" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="39.8" r="2.6" fill="#ef4444"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 PHM <span style="font-size: 11px; color: var(--accent-green);">🟢보유</span></div>
+                    <div class="stock-meta">풀티 그룹 · 2주 · 적정가 $166.80</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$115.73</div>
+                    <div class="stock-ret ret-minus">-2.29% ($231.5)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">경기소비재</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 22위 · E/P 9.9% · FCF 7.8%</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,25.9 11.3,20.3 18.6,18.9 25.9,17.8 33.2,26.3 40.5,32.7 47.8,33.3 55.1,39.8 62.4,41.6 69.7,35.1 77.0,31.0 84.3,33.0 91.6,32.3 98.9,25.7 106.2,25.2 113.5,26.7 120.8,19.9 128.1,4.0 135.4,11.2 142.7,15.1 150.0,22.5 157.3,21.6 164.6,24.8 171.9,22.6 179.2,8.1 186.5,20.1 193.8,10.6 201.1,14.9 208.4,14.2 215.7,20.7 223.0,16.4 230.3,14.9 237.6,20.3 244.9,23.2 252.2,30.9 259.5,30.9 266.8,30.7 274.1,25.7 281.4,29.2 288.7,34.7 296.0,35.2" fill="none" stroke="#ef4444" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="31.2" y2="31.2" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="74.0" y2="74.0" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="35.2" r="2.6" fill="#ef4444"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 PNR <span style="font-size: 11px; color: var(--accent-green);">🟢보유</span></div>
+                    <div class="stock-meta">펜테어 · 4주 · 적정가 $59.40</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$53.03</div>
+                    <div class="stock-ret ret-plus">+0.13% ($212.1)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">산업재</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 35위 · E/P 7.7% · FCF 8.8%</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,6.3 11.3,5.6 18.6,7.6 25.9,4.0 33.2,19.4 40.5,23.3 47.8,24.6 55.1,28.9 62.4,29.2 69.7,27.8 77.0,30.5 84.3,32.7 91.6,30.0 98.9,27.6 106.2,28.7 113.5,29.2 120.8,29.5 128.1,25.2 135.4,25.2 142.7,26.8 150.0,25.5 157.3,41.3 164.6,44.3 171.9,44.4 179.2,37.7 186.5,39.5 193.8,34.7 201.1,37.7 208.4,37.6 215.7,42.0 223.0,40.9 230.3,42.9 237.6,46.2 244.9,46.8 252.2,50.1 259.5,51.9 266.8,52.5 274.1,52.8 281.4,55.3 288.7,56.2 296.0,56.1" fill="none" stroke="#10b981" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="56.2" y2="56.2" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="74.0" y2="74.0" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="56.1" r="2.6" fill="#10b981"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 SYF <span style="font-size: 11px; color: var(--accent-green);">🟢보유</span></div>
+                    <div class="stock-meta">싱크로니 파이낸셜 · 3주 · 적정가 $139.20</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$71.77</div>
+                    <div class="stock-ret ret-plus">+0.01% ($215.3)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">금융</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 2위 · E/P 14.9% · FCF 42.2%</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,18.8 11.3,11.6 18.6,10.7 25.9,15.7 33.2,17.1 40.5,22.6 47.8,24.3 55.1,33.0 62.4,29.7 69.7,27.3 77.0,27.0 84.3,30.3 91.6,30.4 98.9,26.4 106.2,23.7 113.5,21.8 120.8,19.3 128.1,9.9 135.4,14.8 142.7,18.1 150.0,26.1 157.3,21.9 164.6,23.6 171.9,27.9 179.2,13.9 186.5,17.4 193.8,7.5 201.1,10.3 208.4,5.3 215.7,4.0 223.0,6.9 230.3,6.1 237.6,13.2 244.9,5.9 252.2,12.4 259.5,16.3 266.8,20.1 274.1,24.7 281.4,24.0 288.7,29.1 296.0,27.0" fill="none" stroke="#10b981" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="27.1" y2="27.1" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="74.0" y2="74.0" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="27.0" r="2.6" fill="#10b981"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 TXT <span style="font-size: 11px; color: var(--accent-green);">🟢보유</span></div>
+                    <div class="stock-meta">텍스트론 · 3주 · 적정가 $76.64</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$77.26</div>
+                    <div class="stock-ret ret-plus">+1.23% ($231.8)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">산업재</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 34위 · E/P 6.9% · FCF 7.0%</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,10.0 11.3,11.9 18.6,15.8 25.9,17.5 33.2,4.0 40.5,11.8 47.8,13.0 55.1,12.3 62.4,13.7 69.7,14.3 77.0,10.6 84.3,15.5 91.6,12.8 98.9,8.8 106.2,9.6 113.5,9.9 120.8,21.3 128.1,12.5 135.4,11.3 142.7,11.9 150.0,13.1 157.3,17.0 164.6,13.3 171.9,9.0 179.2,14.8 186.5,23.3 193.8,17.5 201.1,16.2 208.4,18.3 215.7,19.9 223.0,27.5 230.3,26.9 237.6,31.8 244.9,34.0 252.2,33.0 259.5,31.8 266.8,31.2 274.1,36.6 281.4,39.0 288.7,39.7 296.0,37.8" fill="none" stroke="#10b981" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="39.5" y2="39.5" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="74.0" y2="74.0" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="37.8" r="2.6" fill="#10b981"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 UHS <span style="font-size: 11px; color: var(--accent-green);">🟢보유</span></div>
+                    <div class="stock-meta">유니버설 헬스 서비시스 · 1주 · 적정가 $346.50</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$175.72</div>
+                    <div class="stock-ret ret-plus">+0.17% ($175.7)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">헬스케어</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 15위 · E/P 14.5% · FCF 8.0%</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,4.6 11.3,4.0 18.6,6.3 25.9,8.0 33.2,23.6 40.5,27.6 47.8,21.3 55.1,19.8 62.4,22.2 69.7,31.7 77.0,43.0 84.3,56.3 91.6,59.0 98.9,53.4 106.2,53.6 113.5,60.8 120.8,54.4 128.1,54.6 135.4,47.8 142.7,33.0 150.0,40.9 157.3,51.4 164.6,47.7 171.9,46.9 179.2,26.1 186.5,23.0 193.8,18.6 201.1,17.1 208.4,19.2 215.7,16.6 223.0,10.8 230.3,8.8 237.6,20.4 244.9,21.7 252.2,12.6 259.5,16.1 266.8,5.7 274.1,7.7 281.4,8.3 288.7,14.7 296.0,12.6" fill="none" stroke="#10b981" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="13.1" y2="13.1" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="74.0" y2="74.0" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="12.6" r="2.6" fill="#10b981"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🇺🇸 VICI <span style="font-size: 11px; color: var(--accent-green);">🟢보유</span></div>
+                    <div class="stock-meta">비치 프라퍼티스 · 10주 · 적정가 $39.15</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$22.65</div>
+                    <div class="stock-ret ret-minus">-2.22% ($226.5)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">부동산</span>매수일 2026-09-29</div><div class="why">📌 저평가 가치주 리밸런싱 매수 (사용자 실행) | 현재 스크리너 4위 · E/P 10.9% · FCF 9.8%</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,9.3 11.3,5.2 18.6,10.3 25.9,8.8 33.2,4.0 40.5,9.8 47.8,6.3 55.1,10.2 62.4,8.4 69.7,8.3 77.0,7.6 84.3,12.9 91.6,16.4 98.9,11.4 106.2,8.3 113.5,16.3 120.8,17.3 128.1,13.6 135.4,19.6 142.7,16.4 150.0,21.2 157.3,19.3 164.6,15.9 171.9,19.2 179.2,14.3 186.5,19.0 193.8,18.7 201.1,20.8 208.4,19.1 215.7,21.8 223.0,18.0 230.3,21.3 237.6,23.5 244.9,23.5 252.2,26.3 259.5,27.4 266.8,30.4 274.1,31.2 281.4,34.2 288.7,37.7 296.0,39.8" fill="none" stroke="#ef4444" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="36.5" y2="36.5" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="74.0" y2="74.0" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="39.8" r="2.6" fill="#ef4444"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+        </div>
+
+        <!-- 탭 4: 바이낸스 코인 상세 -->
+        <div class="tab-pane" id="tab-coin">
+
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-sym">🪙 BTC/USDT <span class="badge badge-gold">LONG 2.0x</span></div>
+                    <div class="stock-meta">계약수: 0.016 BTC · 증거금: $678.55 · 손절: $49,805.6</div>
+                </div>
+                <div class="stock-right">
+                    <div class="stock-price">$84,810.2</div>
+                    <div class="stock-ret ret-plus">+$28.81 (+4.2%)</div>
+                </div>
+                <div class="stock-extra"><div><span class="sec-tag">암호화폐</span>매수일 2026-09-27</div><div class="why">📌 일봉 종가가 SMA100 위 (추세보유 슬리브 진입) · 목표 레버리지 2.00x · ATR 845</div><svg viewBox="0 0 300 78" width="100%" height="78" preserveAspectRatio="none" role="img" aria-label="주가 차트"><polyline points="4.0,52.7 11.3,51.1 18.6,47.5 25.9,42.3 33.2,48.7 40.5,48.0 47.8,52.3 55.1,54.4 62.4,57.1 69.7,49.4 77.0,46.6 84.3,48.2 91.6,47.1 98.9,45.3 106.2,45.1 113.5,41.8 120.8,46.4 128.1,47.2 135.4,45.2 142.7,47.5 150.0,45.4 157.3,44.9 164.6,47.5 171.9,48.6 179.2,45.7 186.5,29.3 193.8,20.3 201.1,17.8 208.4,19.3 215.7,20.9 223.0,16.6 230.3,17.6 237.6,22.5 244.9,22.0 252.2,23.2 259.5,13.5 266.8,4.0 274.1,8.0 281.4,9.2 288.7,6.6 296.0,6.6" fill="none" stroke="#10b981" stroke-width="1.6" stroke-linejoin="round"/><line x1="4" x2="296" y1="10.1" y2="10.1" stroke="#8492a6" stroke-width="1" stroke-dasharray="4 3"/><line x1="4" x2="296" y1="74.0" y2="74.0" stroke="#ef4444" stroke-width="1" stroke-dasharray="2 3" opacity="0.8"/><circle cx="296.0" cy="6.6" r="2.6" fill="#10b981"/></svg><div style="font-size:10px;margin-top:3px;">최근 6개월 · 점선=매수가 · 빨간 점선=손절선 · 파란 점=매수일</div></div>
+            </div>
+
+        </div>
+
+        <!-- 풋터 안내 -->
+        <div class="footer">
+            <p>💡 스마트폰 브라우저 메뉴에서 <strong>'홈 화면에 추가'</strong>를 누르시면 앱처럼 아이콘으로 바로 접속하실 수 있습니다.</p>
+            <p>🔄 10분 주기 자동 백그라운드 동기화 시스템 가동 중 · KIS & Binance 실시간 연동</p>
+        </div>
+    </div>
+
+    
