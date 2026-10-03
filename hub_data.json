@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-04 04:22:09",
+  "timestamp": "2026-10-04 04:24:09",
   "total_net_worth_krw": 12547335.0,
   "exchange_rate": 1353.2,
   "kr_minervini": {
@@ -331,7 +331,7 @@
       "contracts": 0.016,
       "leverage": 2.0,
       "entry_price": 83009.4,
-      "current_price": 84800.3,
+      "current_price": 84800.1,
       "stop_price": 49805.64,
       "margin": 678.4,
       "pnl_usd": 28.65,
@@ -345,7 +345,7 @@
     "cash_usdt": 1206.02,
     "total_asset_usdt": 1884.42,
     "total_asset_krw": 2549997.0,
-    "btc_price": 84800.3,
+    "btc_price": 84800.1,
     "pnl_usd": 28.65,
     "roe_pct": 4.22,
     "profit_pct": 1.81
