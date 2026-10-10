@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-11 05:47:04",
+  "timestamp": "2026-10-11 05:49:04",
   "risk": {
     "weights": {
       "KR": 0.4046,
@@ -25,7 +25,7 @@
     },
     "alerts": []
   },
-  "total_net_worth_krw": 12535905.0,
+  "total_net_worth_krw": 12535891.0,
   "exchange_rate": 1353.2,
   "kr_minervini": {
     "status": "RUNNING",
@@ -335,9 +335,9 @@
       "reason": "일봉 종가가 SMA100 위 (추세보유 슬리브 진입) · 목표 레버리지 2.00x · ATR 845",
       "buy_date": "2026-09-27"
     },
-    "cash_usdt": 1191.54,
-    "total_asset_usdt": 1855.8,
-    "total_asset_krw": 2511269.0,
+    "cash_usdt": 1191.53,
+    "total_asset_usdt": 1855.79,
+    "total_asset_krw": 2511255.0,
     "btc_price": 83032.5,
     "pnl_usd": 0.37,
     "roe_pct": 0.06,
