@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-11 06:33:04",
+  "timestamp": "2026-10-11 06:35:06",
   "risk": {
     "weights": {
-      "KR": 0.4046,
-      "US": 0.3951,
-      "COIN": 0.2003
+      "KR": 0.3881,
+      "US": 0.406,
+      "COIN": 0.2059
     },
     "target": {
       "US": 0.4,
@@ -12,20 +12,22 @@
       "COIN": 0.2
     },
     "drift": {
-      "KR": 0.0046,
-      "US": -0.0049,
-      "COIN": 0.0003
+      "KR": -0.0119,
+      "US": 0.006,
+      "COIN": 0.0059
     },
-    "drawdown": -0.0109,
+    "drawdown": -0.0376,
     "peak_krw": 12673916.0,
     "day_change": {
-      "KR": 0.0,
+      "KR": -0.0667,
       "US": 0.0,
       "COIN": 0.0007
     },
-    "alerts": []
+    "alerts": [
+      "🔎 국장 자산 전일 대비 -6.7% (₩5,072,113 → ₩4,733,848). 매매·입출금 없이 이만큼 변했다면 표시 오류(결제 대기금 등)일 수 있으니 증권사 앱과 대조하세요."
+    ]
   },
-  "total_net_worth_krw": 12535891.0,
+  "total_net_worth_krw": 12197775.0,
   "exchange_rate": 1353.2,
   "kr_minervini": {
     "status": "RUNNING",
@@ -52,10 +54,10 @@
     ],
     "holdings_count": 1,
     "stocks_eval_krw": 953750.0,
-    "cash_krw": 4118363.0,
+    "cash_krw": 3780098.0,
     "parked_krw": 3607780.0,
-    "total_asset_krw": 5072113.0,
-    "profit_pct": 1.44,
+    "total_asset_krw": 4733848.0,
+    "profit_pct": -5.32,
     "regime": "지수 1개 50일선 이탈 (신규매수 중단)"
   },
   "us_peter_lynch": {
@@ -324,23 +326,23 @@
       "contracts": 0.016,
       "leverage": 2.0,
       "entry_price": 83009.4,
-      "current_price": 83031.9,
+      "current_price": 83039.1,
       "stop_price": 49805.64,
-      "margin": 664.26,
-      "pnl_usd": 0.36,
-      "roe_pct": 0.05,
+      "margin": 664.31,
+      "pnl_usd": 0.48,
+      "roe_pct": 0.07,
       "tag": "🟢롱 포지션",
       "mode": "REAL",
       "sector": "암호화폐",
       "reason": "일봉 종가가 SMA100 위 (추세보유 슬리브 진입) · 목표 레버리지 2.00x · ATR 845",
       "buy_date": "2026-09-27"
     },
-    "cash_usdt": 1191.53,
-    "total_asset_usdt": 1855.79,
-    "total_asset_krw": 2511255.0,
-    "btc_price": 83031.9,
-    "pnl_usd": 0.36,
-    "roe_pct": 0.05,
-    "profit_pct": 0.26
+    "cash_usdt": 1191.59,
+    "total_asset_usdt": 1855.9,
+    "total_asset_krw": 2511404.0,
+    "btc_price": 83039.1,
+    "pnl_usd": 0.48,
+    "roe_pct": 0.07,
+    "profit_pct": 0.27
   }
 }
