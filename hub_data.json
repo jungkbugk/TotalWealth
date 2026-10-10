@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-11 06:01:04",
+  "timestamp": "2026-10-11 06:03:04",
   "risk": {
     "weights": {
       "KR": 0.4046,
@@ -324,7 +324,7 @@
       "contracts": 0.016,
       "leverage": 2.0,
       "entry_price": 83009.4,
-      "current_price": 83011.6,
+      "current_price": 83011.7,
       "stop_price": 49805.64,
       "margin": 664.09,
       "pnl_usd": 0.04,
@@ -338,7 +338,7 @@
     "cash_usdt": 1191.37,
     "total_asset_usdt": 1855.46,
     "total_asset_krw": 2510808.0,
-    "btc_price": 83011.6,
+    "btc_price": 83011.7,
     "pnl_usd": 0.04,
     "roe_pct": 0.01,
     "profit_pct": 0.25
