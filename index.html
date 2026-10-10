@@ -11,6 +11,8 @@
   #hub-status { position:fixed; right:10px; bottom:8px; font:11px/1.4 -apple-system,"Segoe UI","Noto Sans KR",sans-serif; color:#8492a6;
                 background:rgba(16,21,34,.9); border:1px solid #202b3f; border-radius:8px; padding:4px 10px; z-index:99; }
   #hub-status.err { color:#ef4444; }
+  .eq-btn { background:transparent; color:#8492a6; border:1px solid #202b3f; border-radius:6px; padding:2px 10px; margin-left:6px; font-size:11px; cursor:pointer; }
+  .eq-btn.on { background:#38bdf8; color:#080b11; border-color:#38bdf8; font-weight:700; }
 </style>
 </head>
 <body>
@@ -37,7 +39,9 @@
   }
   var BASE = { layout: { background: { type: "solid", color: "transparent" }, textColor: "#8492a6", fontSize: 11 },
                grid: { vertLines: { color: "rgba(132,146,166,.07)" }, horzLines: { color: "rgba(132,146,166,.12)" } },
-               rightPriceScale: { borderColor: "#202b3f" }, timeScale: { borderColor: "#202b3f", timeVisible: false },
+               rightPriceScale: { borderColor: "#202b3f" }, timeScale: { borderColor: "#202b3f", timeVisible: false, tickMarkFormatter: function (t) {
+                 var m, d; if (typeof t === "string") { var p = t.split("-"); m = +p[1]; d = +p[2]; } else if (t && t.month) { m = t.month; d = t.day; } else { var x = new Date(t * 1000); m = x.getUTCMonth() + 1; d = x.getUTCDate(); }
+                 return m + "/" + d; } },
                autoSize: true, crosshair: { mode: 0 } };
   function candleChart(el, s) {
     var UP = "#ef4444", DN = "#3b82f6", n = s.t.length;
@@ -67,16 +71,32 @@
     if (bd && s.t.indexOf(bd) >= 0) cs.setMarkers([{ time: bd, position: "belowBar", color: "#38bdf8", shape: "arrowUp", text: "매수" }]);
     chart.timeScale().setVisibleLogicalRange({ from: Math.max(0, n - 90), to: n + 2 });
   }
+  var EQMODE = "pct";      // pct: 시작일 대비 수익률(%), krw: 합계 금액 (값 차이가 작아도 보이도록 축을 데이터 범위에 맞춤)
+  function eqMode(m) {
+    EQMODE = m;
+    document.querySelectorAll('.hub-chart[data-kind="equity"]').forEach(function (e) { e.innerHTML = ""; delete e.dataset.done; });
+    document.querySelectorAll('.eq-btn').forEach(function (b) { b.classList.toggle('on', b.dataset.m === m); });
+    drawCharts();
+  }
   function equityChart(el) {
     var s = JSON.parse(el.dataset.series || "{}");
+    document.querySelectorAll('.eq-btn').forEach(function (b) { b.classList.toggle('on', b.dataset.m === EQMODE); });
     if (!s.d || s.d.length < 2) { el.style.height = "auto"; el.style.padding = "14px"; el.textContent = "원장 기록이 쌓이면 표시됩니다."; return; }
+    var pct = EQMODE === "pct";
     var chart = LightweightCharts.createChart(el, BASE);
-    var area = chart.addAreaSeries({ lineColor: "#38bdf8", topColor: "rgba(56,189,248,.28)", bottomColor: "rgba(56,189,248,.02)", lineWidth: 2, title: "합계" });
-    function pts(a) { return s.d.map(function (d, i) { return { time: d, value: a[i] }; }); }
-    area.setData(pts(s.ALL));
-    [["KR", "#ef4444"], ["US", "#10b981"], ["COIN", "#f59e0b"]].forEach(function (p) {
-      chart.addLineSeries({ color: p[1], lineWidth: 1, priceLineVisible: false, lastValueVisible: false }).setData(pts(s[p[0]]));
-    });
+    function arr(a) { return pct ? a.map(function (v) { return (v / a[0] - 1) * 100; }) : a; }
+    function pts(a) { var b = arr(a); return s.d.map(function (d, i) { return { time: d, value: b[i] }; }); }
+    var fmt = pct ? { type: "custom", minMove: 0.01, formatter: function (p) { return (p >= 0 ? "+" : "") + p.toFixed(2) + "%"; } }
+                  : { type: "custom", minMove: 1, formatter: function (p) { return (p / 10000).toFixed(0) + "만"; } };
+    var total = chart.addLineSeries({ color: "#38bdf8", lineWidth: 3, title: "합계", priceFormat: fmt, lastValueVisible: true });
+    total.setData(pts(s.ALL));
+    if (pct) {
+      total.createPriceLine({ price: 0, color: "#8492a6", lineWidth: 1, lineStyle: 2, axisLabelVisible: false });
+      [["KR", "#ef4444", "국장"], ["US", "#10b981", "미장"], ["COIN", "#f59e0b", "코인"]].forEach(function (p) {
+        chart.addLineSeries({ color: p[1], lineWidth: 1.5, title: p[2], priceFormat: fmt, priceLineVisible: false }).setData(pts(s[p[0]]));
+      });
+    }
+    chart.priceScale("right").applyOptions({ scaleMargins: { top: 0.12, bottom: 0.12 } });
     chart.timeScale().fitContent();
   }
   async function drawCharts() {
