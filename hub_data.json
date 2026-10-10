@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-11 08:01:04",
+  "timestamp": "2026-10-11 08:03:05",
   "risk": {
     "weights": {
       "KR": 0.4046,
@@ -25,7 +25,7 @@
     },
     "alerts": []
   },
-  "total_net_worth_krw": 12536256.0,
+  "total_net_worth_krw": 12536270.0,
   "exchange_rate": 1353.2,
   "kr_minervini": {
     "status": "RUNNING",
@@ -324,9 +324,9 @@
       "contracts": 0.016,
       "leverage": 2.0,
       "entry_price": 83009.4,
-      "current_price": 83049.2,
+      "current_price": 83049.5,
       "stop_price": 49805.64,
-      "margin": 664.39,
+      "margin": 664.4,
       "pnl_usd": 0.64,
       "roe_pct": 0.1,
       "tag": "🟢롱 포지션",
@@ -336,9 +336,9 @@
       "buy_date": "2026-09-27"
     },
     "cash_usdt": 1191.67,
-    "total_asset_usdt": 1856.06,
-    "total_asset_krw": 2511620.0,
-    "btc_price": 83049.2,
+    "total_asset_usdt": 1856.07,
+    "total_asset_krw": 2511634.0,
+    "btc_price": 83049.5,
     "pnl_usd": 0.64,
     "roe_pct": 0.1,
     "profit_pct": 0.28
