@@ -16,9 +16,84 @@
 <body>
 <div id="app"><p style="padding:40px;text-align:center;color:#8492a6;font-family:sans-serif">데이터 불러오는 중…</p></div>
 <div id="hub-status">로딩 중</div>
+<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
 <script>
   // 데이터(hub_fragment.html)는 Pages 빌드를 거치지 않는 'data' 브랜치에서 60초마다 직접 불러옵니다.
   const RAW = "https://raw.githubusercontent.com/jungkbugk/TotalWealth/data/hub_fragment.html";
+  const CHART_RAW = RAW.replace("hub_fragment.html", "hub_charts.json");
+  var CH = { data: null, t: 0 };
+  async function chartData() {
+    if (CH.data && Date.now() - CH.t < 300000) return CH.data;
+    try {
+      var r = await fetch(CHART_RAW + "?t=" + Math.floor(Date.now() / 300000), { cache: "no-store" });
+      if (r.ok) { CH.data = await r.json(); CH.t = Date.now(); }
+    } catch (e) {}
+    return CH.data;
+  }
+  function sma(c, n) {
+    var out = [], s = 0;
+    for (var i = 0; i < c.length; i++) { s += c[i]; if (i >= n) s -= c[i - n]; out.push(i >= n - 1 ? s / n : null); }
+    return out;
+  }
+  var BASE = { layout: { background: { type: "solid", color: "transparent" }, textColor: "#8492a6", fontSize: 11 },
+               grid: { vertLines: { color: "rgba(132,146,166,.07)" }, horzLines: { color: "rgba(132,146,166,.12)" } },
+               rightPriceScale: { borderColor: "#202b3f" }, timeScale: { borderColor: "#202b3f", timeVisible: false },
+               autoSize: true, crosshair: { mode: 0 } };
+  function candleChart(el, s) {
+    var UP = "#ef4444", DN = "#3b82f6", n = s.t.length;
+    var chart = LightweightCharts.createChart(el, BASE);
+    var cs = chart.addCandlestickSeries({ upColor: UP, downColor: DN, borderUpColor: UP, borderDownColor: DN, wickUpColor: UP, wickDownColor: DN,
+                                           priceLineVisible: false });
+    var kr = (el.dataset.key || "").indexOf("KR:") === 0;
+    cs.applyOptions({ priceFormat: { type: "price", precision: kr ? 0 : 2, minMove: kr ? 1 : 0.01 } });
+    var bars = [];
+    for (var i = 0; i < n; i++) bars.push({ time: s.t[i], open: s.o[i], high: s.h[i], low: s.l[i], close: s.c[i] });
+    var cur = parseFloat(el.dataset.cur || 0), today = new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
+    var last = bars[bars.length - 1];
+    if (cur > 0 && last.time === today) { last.close = cur; last.high = Math.max(last.high, cur); last.low = Math.min(last.low, cur); }
+    cs.setData(bars);
+    chart.priceScale("right").applyOptions({ scaleMargins: { top: 0.06, bottom: 0.2 } });
+    [[5, "#f59e0b"], [20, "#10b981"], [60, "#8b5cf6"]].forEach(function (p) {
+      var m = sma(s.c, p[0]), d = [];
+      for (var i = 0; i < n; i++) if (m[i] !== null) d.push({ time: s.t[i], value: m[i] });
+      chart.addLineSeries({ color: p[1], lineWidth: 1, priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false }).setData(d);
+    });
+    var vs = chart.addHistogramSeries({ priceFormat: { type: "volume" }, priceScaleId: "vol", priceLineVisible: false, lastValueVisible: false });
+    vs.priceScale().applyOptions({ scaleMargins: { top: 0.82, bottom: 0 } });
+    vs.setData(bars.map(function (b, i) { return { time: b.time, value: s.v[i], color: b.close >= b.open ? "rgba(239,68,68,.45)" : "rgba(59,130,246,.45)" }; }));
+    var buy = parseFloat(el.dataset.buy || 0), stop = parseFloat(el.dataset.stop || 0), bd = el.dataset.bd || "";
+    if (buy > 0) cs.createPriceLine({ price: buy, color: "#e5e7eb", lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: "매수" });
+    if (stop > 0) cs.createPriceLine({ price: stop, color: "#ef4444", lineWidth: 1, lineStyle: 3, axisLabelVisible: true, title: "손절" });
+    if (bd && s.t.indexOf(bd) >= 0) cs.setMarkers([{ time: bd, position: "belowBar", color: "#38bdf8", shape: "arrowUp", text: "매수" }]);
+    chart.timeScale().setVisibleLogicalRange({ from: Math.max(0, n - 90), to: n + 2 });
+  }
+  function equityChart(el) {
+    var s = JSON.parse(el.dataset.series || "{}");
+    if (!s.d || s.d.length < 2) { el.style.height = "auto"; el.style.padding = "14px"; el.textContent = "원장 기록이 쌓이면 표시됩니다."; return; }
+    var chart = LightweightCharts.createChart(el, BASE);
+    var area = chart.addAreaSeries({ lineColor: "#38bdf8", topColor: "rgba(56,189,248,.28)", bottomColor: "rgba(56,189,248,.02)", lineWidth: 2, title: "합계" });
+    function pts(a) { return s.d.map(function (d, i) { return { time: d, value: a[i] }; }); }
+    area.setData(pts(s.ALL));
+    [["KR", "#ef4444"], ["US", "#10b981"], ["COIN", "#f59e0b"]].forEach(function (p) {
+      chart.addLineSeries({ color: p[1], lineWidth: 1, priceLineVisible: false, lastValueVisible: false }).setData(pts(s[p[0]]));
+    });
+    chart.timeScale().fitContent();
+  }
+  async function drawCharts() {
+    if (!window.LightweightCharts) return;
+    var els = Array.prototype.filter.call(document.querySelectorAll(".hub-chart"), function (e) { return e.offsetParent !== null && !e.dataset.done; });
+    if (!els.length) return;
+    var data = await chartData();
+    els.forEach(function (el) {
+      try {
+        el.dataset.done = "1";
+        if (el.dataset.kind === "equity") return equityChart(el);
+        var s = data && data[el.dataset.key];
+        if (!s) { el.style.height = "auto"; el.style.padding = "12px"; el.textContent = "차트 데이터 준비 중…"; return; }
+        candleChart(el, s);
+      } catch (e) { el.textContent = "차트 오류"; }
+    });
+  }
   let activeTab = "tab-all";
   function switchTab(tabId) {
     activeTab = tabId;
@@ -26,6 +101,7 @@
     document.querySelectorAll('.tab-pane').forEach(function (p) { p.classList.remove('active'); });
     if (window.event && window.event.target) window.event.target.classList.add('active');
     var pane = document.getElementById(tabId); if (pane) pane.classList.add('active');
+    drawCharts();
   }
   function restoreTab() {
     if (activeTab === "tab-all") return;
@@ -40,6 +116,7 @@
       if (!r.ok) throw new Error("HTTP " + r.status);
       document.getElementById("app").innerHTML = await r.text();
       restoreTab();
+      drawCharts();
       st.className = ""; st.textContent = "자동 갱신 60초 · " + new Date().toLocaleTimeString("ko-KR");
     } catch (e) {
       st.className = "err"; st.textContent = "갱신 실패(" + e.message + ") · 재시도 중";
