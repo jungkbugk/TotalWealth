@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-18 02:11:55",
+  "timestamp": "2026-10-18 02:13:55",
   "risk": {
     "weights": {
       "KR": 0.3962,
       "US": 0.408,
-      "COIN": 0.1958
+      "COIN": 0.1959
     },
     "target": {
       "US": 0.4,
@@ -14,18 +14,18 @@
     "drift": {
       "KR": -0.0038,
       "US": 0.008,
-      "COIN": -0.0042
+      "COIN": -0.0041
     },
     "drawdown": -0.0051,
     "peak_krw": 12673916.0,
     "day_change": {
       "KR": 0.0,
       "US": -0.0,
-      "COIN": -0.003
+      "COIN": -0.0028
     },
     "alerts": []
   },
-  "total_net_worth_krw": 12608755.0,
+  "total_net_worth_krw": 12609428.0,
   "exchange_rate": 1353.2,
   "kr_minervini": {
     "status": "RUNNING",
@@ -307,33 +307,33 @@
       "contracts": 0.013,
       "leverage": 2.0,
       "entry_price": 83009.4,
-      "current_price": 81218.1,
+      "current_price": 81247.9,
       "stop_price": 49805.64,
-      "margin": 527.93,
-      "pnl_usd": -23.29,
-      "roe_pct": -4.41,
+      "margin": 528.11,
+      "pnl_usd": -22.9,
+      "roe_pct": -4.34,
       "tag": "🟢롱 포지션",
       "mode": "REAL",
       "sector": "암호화폐",
       "reason": "일봉 종가가 SMA100 위 (추세보유 슬리브 진입) · 목표 레버리지 2.00x · ATR 845",
       "buy_date": "2026-09-27"
     },
-    "spot_usd": 293.04,
+    "spot_usd": 293.15,
     "spot_qty": 0.003606,
     "spot_position": {
       "qty": 0.003606,
       "entry_price": 83068.01,
-      "current_price": 81218.1,
-      "value_usd": 292.88,
-      "pnl_usd": -6.67,
-      "roe_pct": -2.23
+      "current_price": 81247.9,
+      "value_usd": 292.99,
+      "pnl_usd": -6.56,
+      "roe_pct": -2.19
     },
-    "cash_usdt": 1003.55,
-    "total_asset_usdt": 1824.52,
-    "total_asset_krw": 2468938.0,
-    "btc_price": 81218.1,
-    "pnl_usd": -23.29,
-    "roe_pct": -4.41,
-    "profit_pct": -1.43
+    "cash_usdt": 1003.76,
+    "total_asset_usdt": 1825.02,
+    "total_asset_krw": 2469611.0,
+    "btc_price": 81247.9,
+    "pnl_usd": -22.9,
+    "roe_pct": -4.34,
+    "profit_pct": -1.4
   }
 }
