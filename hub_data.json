@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-18 01:11:55",
+  "timestamp": "2026-10-18 01:13:55",
   "risk": {
     "weights": {
       "KR": 0.3961,
@@ -21,11 +21,11 @@
     "day_change": {
       "KR": 0.0,
       "US": -0.0,
-      "COIN": -0.0018
+      "COIN": -0.0017
     },
     "alerts": []
   },
-  "total_net_worth_krw": 12611883.0,
+  "total_net_worth_krw": 12612024.0,
   "exchange_rate": 1353.2,
   "kr_minervini": {
     "status": "RUNNING",
@@ -307,10 +307,10 @@
       "contracts": 0.013,
       "leverage": 2.0,
       "entry_price": 83009.4,
-      "current_price": 81357.1,
+      "current_price": 81358.3,
       "stop_price": 49805.64,
-      "margin": 528.82,
-      "pnl_usd": -21.48,
+      "margin": 528.87,
+      "pnl_usd": -21.46,
       "roe_pct": -4.06,
       "tag": "🟢롱 포지션",
       "mode": "REAL",
@@ -323,16 +323,16 @@
     "spot_position": {
       "qty": 0.003606,
       "entry_price": 83068.01,
-      "current_price": 81357.1,
+      "current_price": 81358.3,
       "value_usd": 293.39,
       "pnl_usd": -6.17,
       "roe_pct": -2.06
     },
-    "cash_usdt": 1004.47,
-    "total_asset_usdt": 1826.83,
-    "total_asset_krw": 2472066.0,
-    "btc_price": 81357.1,
-    "pnl_usd": -21.48,
+    "cash_usdt": 1004.52,
+    "total_asset_usdt": 1826.93,
+    "total_asset_krw": 2472207.0,
+    "btc_price": 81358.3,
+    "pnl_usd": -21.46,
     "roe_pct": -4.06,
     "profit_pct": -1.3
   }
