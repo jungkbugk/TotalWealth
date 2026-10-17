@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-18 03:45:55",
+  "timestamp": "2026-10-18 03:47:55",
   "risk": {
     "weights": {
       "KR": 0.396,
-      "US": 0.4078,
-      "COIN": 0.1962
+      "US": 0.4077,
+      "COIN": 0.1963
     },
     "target": {
       "US": 0.4,
@@ -13,19 +13,19 @@
     },
     "drift": {
       "KR": -0.004,
-      "US": 0.0078,
-      "COIN": -0.0038
+      "US": 0.0077,
+      "COIN": -0.0037
     },
     "drawdown": -0.0046,
     "peak_krw": 12673916.0,
     "day_change": {
       "KR": 0.0,
       "US": -0.0,
-      "COIN": -0.0003
+      "COIN": -0.0002
     },
     "alerts": []
   },
-  "total_net_worth_krw": 12615546.0,
+  "total_net_worth_krw": 12615770.0,
   "exchange_rate": 1353.2,
   "kr_minervini": {
     "status": "RUNNING",
@@ -307,33 +307,33 @@
       "contracts": 0.013,
       "leverage": 2.0,
       "entry_price": 83009.4,
-      "current_price": 81519.9,
+      "current_price": 81529.7,
       "stop_price": 49805.64,
-      "margin": 529.89,
-      "pnl_usd": -19.36,
-      "roe_pct": -3.65,
+      "margin": 529.95,
+      "pnl_usd": -19.24,
+      "roe_pct": -3.63,
       "tag": "🟢롱 포지션",
       "mode": "REAL",
       "sector": "암호화폐",
       "reason": "일봉 종가가 SMA100 위 (추세보유 슬리브 진입) · 목표 레버리지 2.00x · ATR 845",
       "buy_date": "2026-09-27"
     },
-    "spot_usd": 294.13,
+    "spot_usd": 294.16,
     "spot_qty": 0.003606,
     "spot_position": {
       "qty": 0.003606,
       "entry_price": 83068.01,
-      "current_price": 81519.9,
-      "value_usd": 293.97,
-      "pnl_usd": -5.58,
-      "roe_pct": -1.86
+      "current_price": 81529.7,
+      "value_usd": 294.01,
+      "pnl_usd": -5.55,
+      "roe_pct": -1.85
     },
-    "cash_usdt": 1005.52,
-    "total_asset_usdt": 1829.54,
-    "total_asset_krw": 2475729.0,
-    "btc_price": 81519.9,
-    "pnl_usd": -19.36,
-    "roe_pct": -3.65,
+    "cash_usdt": 1005.59,
+    "total_asset_usdt": 1829.7,
+    "total_asset_krw": 2475953.0,
+    "btc_price": 81529.7,
+    "pnl_usd": -19.24,
+    "roe_pct": -3.63,
     "profit_pct": -1.15
   }
 }
