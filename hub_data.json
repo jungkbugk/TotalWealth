@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-18 00:57:55",
+  "timestamp": "2026-10-18 00:59:55",
   "risk": {
     "weights": {
       "KR": 0.3961,
@@ -25,7 +25,7 @@
     },
     "alerts": []
   },
-  "total_net_worth_krw": 12611089.0,
+  "total_net_worth_krw": 12611004.0,
   "exchange_rate": 1353.2,
   "kr_minervini": {
     "status": "RUNNING",
@@ -307,33 +307,33 @@
       "contracts": 0.013,
       "leverage": 2.0,
       "entry_price": 83009.4,
-      "current_price": 81319.3,
+      "current_price": 81315.7,
       "stop_price": 49805.64,
-      "margin": 528.63,
-      "pnl_usd": -21.97,
-      "roe_pct": -4.16,
+      "margin": 528.55,
+      "pnl_usd": -22.02,
+      "roe_pct": -4.17,
       "tag": "🟢롱 포지션",
       "mode": "REAL",
       "sector": "암호화폐",
       "reason": "일봉 종가가 SMA100 위 (추세보유 슬리브 진입) · 목표 레버리지 2.00x · ATR 845",
       "buy_date": "2026-09-27"
     },
-    "spot_usd": 293.4,
+    "spot_usd": 293.39,
     "spot_qty": 0.003606,
     "spot_position": {
       "qty": 0.003606,
       "entry_price": 83068.01,
-      "current_price": 81319.3,
-      "value_usd": 293.25,
-      "pnl_usd": -6.31,
+      "current_price": 81315.7,
+      "value_usd": 293.24,
+      "pnl_usd": -6.32,
       "roe_pct": -2.11
     },
-    "cash_usdt": 1004.21,
-    "total_asset_usdt": 1826.24,
-    "total_asset_krw": 2471272.0,
-    "btc_price": 81319.3,
-    "pnl_usd": -21.97,
-    "roe_pct": -4.16,
-    "profit_pct": -1.33
+    "cash_usdt": 1004.24,
+    "total_asset_usdt": 1826.18,
+    "total_asset_krw": 2471187.0,
+    "btc_price": 81315.7,
+    "pnl_usd": -22.02,
+    "roe_pct": -4.17,
+    "profit_pct": -1.34
   }
 }
