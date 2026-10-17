@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-18 04:33:55",
+  "timestamp": "2026-10-18 04:35:55",
   "risk": {
     "weights": {
       "KR": 0.396,
@@ -25,7 +25,7 @@
     },
     "alerts": []
   },
-  "total_net_worth_krw": 12615532.0,
+  "total_net_worth_krw": 12615545.0,
   "exchange_rate": 1353.2,
   "kr_minervini": {
     "status": "RUNNING",
@@ -328,12 +328,12 @@
       "pnl_usd": -5.58,
       "roe_pct": -1.86
     },
-    "cash_usdt": 1005.52,
-    "total_asset_usdt": 1829.53,
-    "total_asset_krw": 2475715.0,
+    "cash_usdt": 1005.53,
+    "total_asset_usdt": 1829.54,
+    "total_asset_krw": 2475728.0,
     "btc_price": 81519.8,
     "pnl_usd": -19.36,
     "roe_pct": -3.65,
-    "profit_pct": -1.16
+    "profit_pct": -1.15
   }
 }
