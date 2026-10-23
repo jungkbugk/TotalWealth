@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-24 05:53:16",
+  "timestamp": "2026-10-24 05:55:16",
   "risk": {
     "weights": {
-      "KR": 0.3988,
+      "KR": 0.3987,
       "US": 0.4095,
-      "COIN": 0.1917
+      "COIN": 0.1918
     },
     "target": {
       "US": 0.4,
@@ -12,21 +12,21 @@
       "COIN": 0.2
     },
     "drift": {
-      "KR": -0.0012,
+      "KR": -0.0013,
       "US": 0.0095,
-      "COIN": -0.0083
+      "COIN": -0.0082
     },
-    "drawdown": -0.0112,
+    "drawdown": -0.0108,
     "peak_krw": 12673916.0,
     "day_change": {
       "KR": 0.0,
-      "US": -0.0021,
-      "COIN": -0.0055
+      "US": -0.0017,
+      "COIN": -0.0045
     },
     "alerts": []
   },
-  "total_net_worth_krw": 12532357.0,
-  "exchange_rate": 1323.449951171875,
+  "total_net_worth_krw": 12536957.0,
+  "exchange_rate": 1323.97998046875,
   "kr_minervini": {
     "status": "RUNNING",
     "stale": false,
@@ -292,9 +292,9 @@
     "stocks_eval_usd": 3366.68,
     "cash_usd": 510.71,
     "total_asset_usd": 3877.39,
-    "total_asset_krw": 5131532.0,
+    "total_asset_krw": 5133587.0,
     "profit_pct": 5.33,
-    "exchange_rate": 1323.449951171875
+    "exchange_rate": 1323.97998046875
   },
   "binance_coin": {
     "status": "RUNNING",
@@ -307,33 +307,33 @@
       "contracts": 0.017,
       "leverage": 2.0,
       "entry_price": 83262.55,
-      "current_price": 81391.9,
+      "current_price": 81448.8,
       "stop_price": 49957.53,
-      "margin": 691.82,
-      "pnl_usd": -31.8,
-      "roe_pct": -4.6,
+      "margin": 692.31,
+      "pnl_usd": -30.83,
+      "roe_pct": -4.45,
       "tag": "🟢롱 포지션",
       "mode": "REAL",
       "sector": "암호화폐",
       "reason": "일봉 종가가 SMA100 위 (추세보유 슬리브 진입) · 목표 레버리지 2.00x · ATR 845",
       "buy_date": "2026-09-27"
     },
-    "spot_usd": 293.66,
+    "spot_usd": 293.87,
     "spot_qty": 0.003606,
     "spot_position": {
       "qty": 0.003606,
       "entry_price": 83068.01,
-      "current_price": 81391.9,
-      "value_usd": 293.51,
-      "pnl_usd": -6.04,
-      "roe_pct": -2.02
+      "current_price": 81448.8,
+      "value_usd": 293.72,
+      "pnl_usd": -5.84,
+      "roe_pct": -1.95
     },
-    "cash_usdt": 829.73,
-    "total_asset_usdt": 1815.21,
-    "total_asset_krw": 2402346.0,
-    "btc_price": 81391.9,
-    "pnl_usd": -31.8,
-    "roe_pct": -4.6,
-    "profit_pct": -1.93
+    "cash_usdt": 830.23,
+    "total_asset_usdt": 1816.41,
+    "total_asset_krw": 2404891.0,
+    "btc_price": 81448.8,
+    "pnl_usd": -30.83,
+    "roe_pct": -4.45,
+    "profit_pct": -1.86
   }
 }
