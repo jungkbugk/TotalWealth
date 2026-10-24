@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-24 09:51:17",
+  "timestamp": "2026-10-24 09:53:17",
   "risk": {
     "weights": {
       "KR": 0.3994,
       "US": 0.4101,
-      "COIN": 0.1904
+      "COIN": 0.1905
     },
     "target": {
       "US": 0.4,
@@ -14,18 +14,18 @@
     "drift": {
       "KR": -0.0006,
       "US": 0.0101,
-      "COIN": -0.0096
+      "COIN": -0.0095
     },
     "drawdown": -0.0126,
     "peak_krw": 12673916.0,
     "day_change": {
       "KR": 0.0,
       "US": -0.0019,
-      "COIN": -0.0135
+      "COIN": -0.0132
     },
     "alerts": []
   },
-  "total_net_worth_krw": 12513998.0,
+  "total_net_worth_krw": 12514606.0,
   "exchange_rate": 1323.6600341796875,
   "kr_minervini": {
     "status": "RUNNING",
@@ -307,33 +307,33 @@
       "contracts": 0.017,
       "leverage": 2.0,
       "entry_price": 83262.55,
-      "current_price": 80670.0,
+      "current_price": 80692.1,
       "stop_price": 49957.53,
-      "margin": 685.76,
-      "pnl_usd": -44.07,
-      "roe_pct": -6.43,
+      "margin": 685.96,
+      "pnl_usd": -43.7,
+      "roe_pct": -6.37,
       "tag": "🟢롱 포지션",
       "mode": "REAL",
       "sector": "암호화폐",
       "reason": "일봉 종가가 SMA100 위 (추세보유 슬리브 진입) · 목표 레버리지 2.00x · ATR 845",
       "buy_date": "2026-09-27"
     },
-    "spot_usd": 291.06,
+    "spot_usd": 291.14,
     "spot_qty": 0.003606,
     "spot_position": {
       "qty": 0.003606,
       "entry_price": 83068.01,
-      "current_price": 80670.0,
-      "value_usd": 290.91,
-      "pnl_usd": -8.65,
-      "roe_pct": -2.89
+      "current_price": 80692.1,
+      "value_usd": 290.99,
+      "pnl_usd": -8.57,
+      "roe_pct": -2.86
     },
-    "cash_usdt": 823.62,
-    "total_asset_usdt": 1800.44,
-    "total_asset_krw": 2383173.0,
-    "btc_price": 80670.0,
-    "pnl_usd": -44.07,
-    "roe_pct": -6.43,
-    "profit_pct": -2.73
+    "cash_usdt": 823.8,
+    "total_asset_usdt": 1800.9,
+    "total_asset_krw": 2383781.0,
+    "btc_price": 80692.1,
+    "pnl_usd": -43.7,
+    "roe_pct": -6.37,
+    "profit_pct": -2.7
   }
 }
