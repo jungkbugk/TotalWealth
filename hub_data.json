@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-24 20:49:17",
+  "timestamp": "2026-10-24 20:51:17",
   "risk": {
     "weights": {
       "KR": 0.3995,
       "US": 0.4102,
-      "COIN": 0.1903
+      "COIN": 0.1902
     },
     "target": {
       "US": 0.4,
@@ -14,18 +14,18 @@
     "drift": {
       "KR": -0.0005,
       "US": 0.0102,
-      "COIN": -0.0097
+      "COIN": -0.0098
     },
-    "drawdown": -0.0128,
+    "drawdown": -0.0129,
     "peak_krw": 12673916.0,
     "day_change": {
       "KR": 0.0,
       "US": -0.0019,
-      "COIN": -0.0145
+      "COIN": -0.0148
     },
     "alerts": []
   },
-  "total_net_worth_krw": 12511641.0,
+  "total_net_worth_krw": 12510822.0,
   "exchange_rate": 1323.6600341796875,
   "kr_minervini": {
     "status": "RUNNING",
@@ -307,33 +307,33 @@
       "contracts": 0.017,
       "leverage": 2.0,
       "entry_price": 83262.55,
-      "current_price": 80592.3,
+      "current_price": 80562.1,
       "stop_price": 49957.53,
-      "margin": 685.03,
-      "pnl_usd": -45.39,
-      "roe_pct": -6.63,
+      "margin": 684.78,
+      "pnl_usd": -45.91,
+      "roe_pct": -6.7,
       "tag": "🟢롱 포지션",
       "mode": "REAL",
       "sector": "암호화폐",
       "reason": "일봉 종가가 SMA100 위 (추세보유 슬리브 진입) · 목표 레버리지 2.00x · ATR 845",
       "buy_date": "2026-09-27"
     },
-    "spot_usd": 290.78,
+    "spot_usd": 290.67,
     "spot_qty": 0.003606,
     "spot_position": {
       "qty": 0.003606,
       "entry_price": 83068.01,
-      "current_price": 80592.3,
-      "value_usd": 290.63,
-      "pnl_usd": -8.93,
-      "roe_pct": -2.98
+      "current_price": 80562.1,
+      "value_usd": 290.52,
+      "pnl_usd": -9.04,
+      "roe_pct": -3.02
     },
-    "cash_usdt": 822.85,
-    "total_asset_usdt": 1798.66,
-    "total_asset_krw": 2380816.0,
-    "btc_price": 80592.3,
-    "pnl_usd": -45.39,
-    "roe_pct": -6.63,
-    "profit_pct": -2.82
+    "cash_usdt": 822.59,
+    "total_asset_usdt": 1798.04,
+    "total_asset_krw": 2379997.0,
+    "btc_price": 80562.1,
+    "pnl_usd": -45.91,
+    "roe_pct": -6.7,
+    "profit_pct": -2.86
   }
 }
