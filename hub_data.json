@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-26 08:45:18",
+  "timestamp": "2026-10-26 08:47:19",
   "risk": {
     "weights": {
-      "KR": 0.4,
+      "KR": 0.4001,
       "US": 0.4108,
-      "COIN": 0.1892
+      "COIN": 0.1891
     },
     "target": {
       "US": 0.4,
@@ -12,20 +12,20 @@
       "COIN": 0.2
     },
     "drift": {
-      "KR": 0.0,
+      "KR": 0.0001,
       "US": 0.0108,
-      "COIN": -0.0108
+      "COIN": -0.0109
     },
-    "drawdown": -0.0141,
+    "drawdown": -0.0143,
     "peak_krw": 12673916.0,
     "day_change": {
       "KR": 0.0,
       "US": -0.0,
-      "COIN": -0.0071
+      "COIN": -0.008
     },
     "alerts": []
   },
-  "total_net_worth_krw": 12494809.0,
+  "total_net_worth_krw": 12492724.0,
   "exchange_rate": 1323.6600341796875,
   "kr_minervini": {
     "status": "RUNNING",
@@ -307,33 +307,33 @@
       "contracts": 0.017,
       "leverage": 2.0,
       "entry_price": 83262.55,
-      "current_price": 79997.1,
+      "current_price": 79926.2,
       "stop_price": 49957.53,
-      "margin": 680.07,
-      "pnl_usd": -55.51,
-      "roe_pct": -8.16,
+      "margin": 679.38,
+      "pnl_usd": -56.72,
+      "roe_pct": -8.35,
       "tag": "🟢롱 포지션",
       "mode": "REAL",
       "sector": "암호화폐",
       "reason": "일봉 종가가 SMA100 위 (추세보유 슬리브 진입) · 목표 레버리지 2.00x · ATR 845",
       "buy_date": "2026-09-27"
     },
-    "spot_usd": 288.64,
+    "spot_usd": 288.38,
     "spot_qty": 0.003606,
     "spot_position": {
       "qty": 0.003606,
       "entry_price": 83068.01,
-      "current_price": 79997.1,
-      "value_usd": 288.48,
-      "pnl_usd": -11.07,
-      "roe_pct": -3.7
+      "current_price": 79926.2,
+      "value_usd": 288.23,
+      "pnl_usd": -11.33,
+      "roe_pct": -3.78
     },
-    "cash_usdt": 817.24,
-    "total_asset_usdt": 1785.95,
-    "total_asset_krw": 2363984.0,
-    "btc_price": 79997.1,
-    "pnl_usd": -55.51,
-    "roe_pct": -8.16,
-    "profit_pct": -3.51
+    "cash_usdt": 816.61,
+    "total_asset_usdt": 1784.37,
+    "total_asset_krw": 2361899.0,
+    "btc_price": 79926.2,
+    "pnl_usd": -56.72,
+    "roe_pct": -8.35,
+    "profit_pct": -3.6
   }
 }
