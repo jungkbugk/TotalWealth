@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-26 03:49:18",
+  "timestamp": "2026-10-26 03:51:18",
   "risk": {
     "weights": {
       "KR": 0.3995,
@@ -309,7 +309,7 @@
       "entry_price": 83262.55,
       "current_price": 80652.6,
       "stop_price": 49957.53,
-      "margin": 685.56,
+      "margin": 685.55,
       "pnl_usd": -44.37,
       "roe_pct": -6.47,
       "tag": "🟢롱 포지션",
@@ -328,7 +328,7 @@
       "pnl_usd": -8.71,
       "roe_pct": -2.91
     },
-    "cash_usdt": 823.02,
+    "cash_usdt": 823.03,
     "total_asset_usdt": 1799.58,
     "total_asset_krw": 2382031.0,
     "btc_price": 80652.6,
