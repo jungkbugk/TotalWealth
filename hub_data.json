@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-10-26 06:11:18",
+  "timestamp": "2026-10-26 06:13:18",
   "risk": {
     "weights": {
-      "KR": 0.3996,
-      "US": 0.4103,
+      "KR": 0.3997,
+      "US": 0.4104,
       "COIN": 0.19
     },
     "target": {
@@ -12,20 +12,20 @@
       "COIN": 0.2
     },
     "drift": {
-      "KR": -0.0004,
-      "US": 0.0103,
+      "KR": -0.0003,
+      "US": 0.0104,
       "COIN": -0.01
     },
-    "drawdown": -0.0131,
+    "drawdown": -0.0132,
     "peak_krw": 12673916.0,
     "day_change": {
       "KR": 0.0,
       "US": -0.0,
-      "COIN": -0.0018
+      "COIN": -0.0021
     },
     "alerts": []
   },
-  "total_net_worth_krw": 12507403.0,
+  "total_net_worth_krw": 12506727.0,
   "exchange_rate": 1323.6600341796875,
   "kr_minervini": {
     "status": "RUNNING",
@@ -307,33 +307,33 @@
       "contracts": 0.017,
       "leverage": 2.0,
       "entry_price": 83262.55,
-      "current_price": 80453.0,
+      "current_price": 80427.9,
       "stop_price": 49957.53,
-      "margin": 683.89,
-      "pnl_usd": -47.76,
-      "roe_pct": -6.98,
+      "margin": 683.64,
+      "pnl_usd": -48.19,
+      "roe_pct": -7.05,
       "tag": "🟢롱 포지션",
       "mode": "REAL",
       "sector": "암호화폐",
       "reason": "일봉 종가가 SMA100 위 (추세보유 슬리브 진입) · 목표 레버리지 2.00x · ATR 845",
       "buy_date": "2026-09-27"
     },
-    "spot_usd": 290.28,
+    "spot_usd": 290.19,
     "spot_qty": 0.003606,
     "spot_position": {
       "qty": 0.003606,
       "entry_price": 83068.01,
-      "current_price": 80453.0,
-      "value_usd": 290.13,
-      "pnl_usd": -9.43,
-      "roe_pct": -3.15
+      "current_price": 80427.9,
+      "value_usd": 290.04,
+      "pnl_usd": -9.52,
+      "roe_pct": -3.18
     },
-    "cash_usdt": 821.29,
-    "total_asset_usdt": 1795.46,
-    "total_asset_krw": 2376578.0,
-    "btc_price": 80453.0,
-    "pnl_usd": -47.76,
-    "roe_pct": -6.98,
-    "profit_pct": -3.0
+    "cash_usdt": 821.12,
+    "total_asset_usdt": 1794.95,
+    "total_asset_krw": 2375902.0,
+    "btc_price": 80427.9,
+    "pnl_usd": -48.19,
+    "roe_pct": -7.05,
+    "profit_pct": -3.02
   }
 }
