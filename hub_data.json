@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-26 06:09:18",
+  "timestamp": "2026-10-26 06:11:18",
   "risk": {
     "weights": {
       "KR": 0.3996,
       "US": 0.4103,
-      "COIN": 0.1901
+      "COIN": 0.19
     },
     "target": {
       "US": 0.4,
@@ -14,18 +14,18 @@
     "drift": {
       "KR": -0.0004,
       "US": 0.0103,
-      "COIN": -0.0099
+      "COIN": -0.01
     },
     "drawdown": -0.0131,
     "peak_krw": 12673916.0,
     "day_change": {
       "KR": 0.0,
       "US": -0.0,
-      "COIN": -0.0014
+      "COIN": -0.0018
     },
     "alerts": []
   },
-  "total_net_worth_krw": 12508364.0,
+  "total_net_worth_krw": 12507403.0,
   "exchange_rate": 1323.6600341796875,
   "kr_minervini": {
     "status": "RUNNING",
@@ -307,33 +307,33 @@
       "contracts": 0.017,
       "leverage": 2.0,
       "entry_price": 83262.55,
-      "current_price": 80488.0,
+      "current_price": 80453.0,
       "stop_price": 49957.53,
-      "margin": 684.17,
-      "pnl_usd": -47.17,
-      "roe_pct": -6.89,
+      "margin": 683.89,
+      "pnl_usd": -47.76,
+      "roe_pct": -6.98,
       "tag": "🟢롱 포지션",
       "mode": "REAL",
       "sector": "암호화폐",
       "reason": "일봉 종가가 SMA100 위 (추세보유 슬리브 진입) · 목표 레버리지 2.00x · ATR 845",
       "buy_date": "2026-09-27"
     },
-    "spot_usd": 290.41,
+    "spot_usd": 290.28,
     "spot_qty": 0.003606,
     "spot_position": {
       "qty": 0.003606,
       "entry_price": 83068.01,
-      "current_price": 80488.0,
-      "value_usd": 290.25,
-      "pnl_usd": -9.3,
-      "roe_pct": -3.11
+      "current_price": 80453.0,
+      "value_usd": 290.13,
+      "pnl_usd": -9.43,
+      "roe_pct": -3.15
     },
-    "cash_usdt": 821.61,
-    "total_asset_usdt": 1796.19,
-    "total_asset_krw": 2377539.0,
-    "btc_price": 80488.0,
-    "pnl_usd": -47.17,
-    "roe_pct": -6.89,
-    "profit_pct": -2.96
+    "cash_usdt": 821.29,
+    "total_asset_usdt": 1795.46,
+    "total_asset_krw": 2376578.0,
+    "btc_price": 80453.0,
+    "pnl_usd": -47.76,
+    "roe_pct": -6.98,
+    "profit_pct": -3.0
   }
 }
