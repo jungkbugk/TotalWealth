@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-26 09:47:18",
+  "timestamp": "2026-10-26 09:49:20",
   "risk": {
     "weights": {
       "KR": 0.4002,
@@ -16,17 +16,17 @@
       "US": 0.0107,
       "COIN": -0.0109
     },
-    "drawdown": -0.0144,
+    "drawdown": -0.0143,
     "peak_krw": 12673916.0,
     "day_change": {
-      "KR": 0.0,
-      "US": -0.0004,
+      "KR": 0.0001,
+      "US": -0.0003,
       "COIN": -0.0076
     },
     "alerts": []
   },
-  "total_net_worth_krw": 12491303.0,
-  "exchange_rate": 1323.0799560546875,
+  "total_net_worth_krw": 12492517.0,
+  "exchange_rate": 1323.27001953125,
   "kr_minervini": {
     "status": "RUNNING",
     "stale": false,
@@ -35,10 +35,10 @@
     "holdings": [],
     "holdings_count": 0,
     "stocks_eval_krw": 0.0,
-    "cash_krw": 4998479.0,
-    "parked_krw": 4894260.0,
-    "total_asset_krw": 4998479.0,
-    "profit_pct": -0.03,
+    "cash_krw": 4998899.0,
+    "parked_krw": 4894680.0,
+    "total_asset_krw": 4998899.0,
+    "profit_pct": -0.02,
     "regime": "지수 50일선 동반 이탈 (현금 보존)"
   },
   "us_peter_lynch": {
@@ -292,9 +292,9 @@
     "stocks_eval_usd": 3366.68,
     "cash_usd": 510.71,
     "total_asset_usd": 3877.39,
-    "total_asset_krw": 5130097.0,
+    "total_asset_krw": 5130834.0,
     "profit_pct": 5.33,
-    "exchange_rate": 1323.0799560546875
+    "exchange_rate": 1323.27001953125
   },
   "binance_coin": {
     "status": "RUNNING",
@@ -307,33 +307,33 @@
       "contracts": 0.017,
       "leverage": 2.0,
       "entry_price": 83262.55,
-      "current_price": 79997.8,
+      "current_price": 79955.4,
       "stop_price": 49957.53,
-      "margin": 679.92,
-      "pnl_usd": -55.5,
-      "roe_pct": -8.16,
+      "margin": 679.81,
+      "pnl_usd": -56.22,
+      "roe_pct": -8.27,
       "tag": "🟢롱 포지션",
       "mode": "REAL",
       "sector": "암호화폐",
       "reason": "일봉 종가가 SMA100 위 (추세보유 슬리브 진입) · 목표 레버리지 2.00x · ATR 845",
       "buy_date": "2026-09-27"
     },
-    "spot_usd": 288.64,
+    "spot_usd": 288.48,
     "spot_qty": 0.003606,
     "spot_position": {
       "qty": 0.003606,
       "entry_price": 83068.01,
-      "current_price": 79997.8,
-      "value_usd": 288.48,
-      "pnl_usd": -11.07,
-      "roe_pct": -3.7
+      "current_price": 79955.4,
+      "value_usd": 288.33,
+      "pnl_usd": -11.22,
+      "roe_pct": -3.75
     },
-    "cash_usdt": 817.22,
-    "total_asset_usdt": 1785.78,
-    "total_asset_krw": 2362727.0,
-    "btc_price": 79997.8,
-    "pnl_usd": -55.5,
-    "roe_pct": -8.16,
-    "profit_pct": -3.52
+    "cash_usdt": 817.27,
+    "total_asset_usdt": 1785.56,
+    "total_asset_krw": 2362784.0,
+    "btc_price": 79955.4,
+    "pnl_usd": -56.22,
+    "roe_pct": -8.27,
+    "profit_pct": -3.53
   }
 }
