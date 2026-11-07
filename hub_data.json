@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-07 18:21:45",
+  "timestamp": "2026-11-07 18:23:45",
   "risk": {
     "weights": {
       "KR": 0.3936,
@@ -308,7 +308,7 @@
     "cash_usdt": 1699.69,
     "total_asset_usdt": 1700.16,
     "total_asset_krw": 2318421.0,
-    "btc_price": 76123.0,
+    "btc_price": 76120.9,
     "pnl_usd": 0.0,
     "roe_pct": 0.0,
     "pnl_total_pct": 0.0,
