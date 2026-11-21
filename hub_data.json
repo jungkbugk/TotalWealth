@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-21 13:33:33",
+  "timestamp": "2026-11-21 13:35:59",
   "risk": {
     "weights": {
       "KR": 0.403,
@@ -25,7 +25,7 @@
     },
     "alerts": []
   },
-  "total_net_worth_krw": 12434861.0,
+  "total_net_worth_krw": 12434862.0,
   "exchange_rate": 1346.1300048828125,
   "kr_minervini": {
     "status": "RUNNING",
@@ -302,13 +302,13 @@
     "strategy_name": "BTC 혼합 (추세보유 + 4h 돌파)",
     "market": "COIN",
     "position": null,
-    "spot_usd": 0.34,
+    "spot_usd": 0.35,
     "spot_qty": 6e-06,
     "spot_position": null,
     "cash_usdt": 1699.69,
-    "total_asset_usdt": 1700.03,
-    "total_asset_krw": 2288468.0,
-    "btc_price": 56048.6,
+    "total_asset_usdt": 1700.04,
+    "total_asset_krw": 2288469.0,
+    "btc_price": 56157.6,
     "pnl_usd": 0.0,
     "roe_pct": 0.0,
     "pnl_total_pct": 0.0,
