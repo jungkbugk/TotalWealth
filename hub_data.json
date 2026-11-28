@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-29 00:10:58",
+  "timestamp": "2026-11-29 00:13:31",
   "risk": {
     "weights": {
       "KR": 0.3971,
@@ -351,13 +351,13 @@
     "strategy_name": "BTC 혼합 (추세보유 + 4h 돌파)",
     "market": "COIN",
     "position": null,
-    "spot_usd": 0.36,
+    "spot_usd": 0.37,
     "spot_qty": 6e-06,
     "spot_position": null,
     "cash_usdt": 1699.69,
-    "total_asset_usdt": 1700.05,
+    "total_asset_usdt": 1700.06,
     "total_asset_krw": 2266173.0,
-    "btc_price": 59321.0,
+    "btc_price": 59355.9,
     "pnl_usd": 0.0,
     "roe_pct": 0.0,
     "pnl_total_pct": 0.0,
